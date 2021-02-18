@@ -4,4 +4,10 @@
   background-image: url(../../../images/like-button.svg);
   border: none;
   background-color: transparent;
+  transition: .2s;
+}
+
+.elements__like-button:hover {
+  opacity: .6;
+  cursor: pointer;
 }

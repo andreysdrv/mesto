@@ -7,4 +7,10 @@
   background-image: url(../../../images/add-button.svg);
   background-position: center;
   background-repeat: no-repeat;
+  transition: .2s;
+}
+
+.profile__add-button:hover {
+  opacity: .6;
+  cursor: pointer;
 }
