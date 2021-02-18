@@ -15,7 +15,7 @@
     <section class="profile">
       <img src="./images/profile__avatar.png" alt="Изображение профиля" class="profile__avatar">
       <div class="profile__info">
-        <p class="profile__name">Жак-Ив Кусто</p>
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
         <input type="button" class="profile__edit-button">
         <p class="profile__about">Исследователь океана</p>
       </div>
@@ -65,6 +65,19 @@
         </div>
       </div>
     </section>
+    <div class="popup">
+      <div class="popup__container">
+        <form action="">
+          <p class="popup__title">Редактировать профиль</p>
+          <fieldset class="popup__fieldset">
+            <input type="text" class="popup__input-name">
+            <input type="text" class="popup__input-about">
+            <button type="submit" class="popup__button">Сохранить</button>
+          </fieldset>
+        </form>
+        <button type="button" class="popup__close-button"></button>
+      </div>
+    </div>
   </main>
   <footer class="footer">
     <p class="footer__copyrights">&copy; 2021 Mesto Russia</p>

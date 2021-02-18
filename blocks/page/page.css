@@ -2,4 +2,5 @@
   margin: 0 auto;
   max-width: 880px;
   background-color: #000;
+  position: relative;
 }
