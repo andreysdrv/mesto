@@ -1,0 +1,14 @@
+.popup__fieldset {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100% - 72px);
+  margin: 0 auto;
+  border: none;
+  padding: 0;
+}
+
+@media screen and (max-width: 475px) {
+  .popup__fieldset {
+    max-width: 238px;
+  }
+}

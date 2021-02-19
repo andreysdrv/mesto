@@ -15,14 +15,73 @@
     <section class="profile">
       <img src="./images/profile__avatar.png" alt="Изображение профиля" class="profile__avatar">
       <div class="profile__info">
-        <p class="profile__name">Жак-Ив Кусто</p>
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
         <input type="button" class="profile__edit-button">
         <p class="profile__about">Исследователь океана</p>
       </div>
       <input type="button" class="profile__add-button">
     </section>
-    <section class="elements"></section>
+    <section class="elements">
+      <div class="elements__card">
+        <img src="./images/Tbilisi-most-mira.jpg" alt="Мост мира в Тбилиси, Грузия" class="elements__image">
+        <div class="elements__title-wrapper">
+          <p class="elements__title">Тбилиси</p>
+          <input type="button" class="elements__like-button">
+        </div>
+      </div>
+      <div class="elements__card">
+        <img src="./images/Batumi-view.jpg" alt="Вид на Батуми, Грузия" class="elements__image">
+        <div class="elements__title-wrapper">
+          <p class="elements__title">Батуми</p>
+          <input type="button" class="elements__like-button">
+        </div>
+      </div>
+      <div class="elements__card">
+        <img src="./images/Acropolis-Athens.jpg" alt="Греция, Афины, акрополис" class="elements__image">
+        <div class="elements__title-wrapper">
+          <p class="elements__title">Афины</p>
+          <input type="button" class="elements__like-button">
+        </div>
+      </div>
+      <div class="elements__card">
+        <img src="./images/Colosseum-Rome.jpg" alt="Рим, колизей" class="elements__image">
+        <div class="elements__title-wrapper">
+          <p class="elements__title">Рим, колизей</p>
+          <input type="button" class="elements__like-button">
+        </div>
+      </div>
+      <div class="elements__card">
+        <img src="./images/Netherlands-view.jpg" alt="Нидерланды" class="elements__image">
+        <div class="elements__title-wrapper">
+          <p class="elements__title">Нидерланды</p>
+          <input type="button" class="elements__like-button">
+        </div>
+      </div>
+      <div class="elements__card">
+        <img src="./images/Olympus-mountain.jpg" alt="Гора Олимп" class="elements__image">
+        <div class="elements__title-wrapper">
+          <p class="elements__title">Гора Олимп</p>
+          <input type="button" class="elements__like-button">
+        </div>
+      </div>
+    </section>
+    <div class="popup">
+      <div class="popup__container">
+        <form action="">
+          <p class="popup__title">Редактировать профиль</p>
+          <fieldset class="popup__fieldset">
+            <input type="text" class="popup__input-name">
+            <input type="text" class="popup__input-about">
+            <button type="submit" class="popup__button">Сохранить</button>
+          </fieldset>
+        </form>
+        <button type="button" class="popup__close-button"></button>
+      </div>
+    </div>
   </main>
-  <footer class="footer"></footer>
+  <footer class="footer">
+    <p class="footer__copyrights">&copy; 2021 Mesto Russia</p>
+  </footer>
+  <script src="./pages/index.js"></script>
 </body>
 </html>
