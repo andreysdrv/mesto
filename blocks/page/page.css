@@ -1,10 +1,9 @@
 .page {
-  margin: 0 auto;
-  max-width: 880px;
+/*   margin: 0 auto;
+  max-width: 880px; */
   background-color: #000;
-  position: relative;
 }
-
+/* 
 @media screen and (max-width: 915px) {
   .page {
     width: 88%;
@@ -15,4 +14,4 @@
   .page {
     width: 88%;
   }
-}
+} */

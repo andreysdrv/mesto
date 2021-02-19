@@ -1,15 +1,19 @@
 .popup__close-button {
   position: absolute;
-  top: 0;
-  right: 0;
-  margin: -10%;
+  top: -350px;
+  right: -450px;
+  position: relative;
+  padding: 0;
+  display: flex;
   background-image: url(../../../images/add-button.svg);
   width: 40px;
   height: 40px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  transform: rotate(45deg);
+  transform: rotate(
+45deg
+);
   border: none;
   background-color: transparent;
   transition: .2s;
@@ -22,14 +26,20 @@
 
 @media screen and (max-width: 620px) {
   .popup__close-button {
-    top: 0;
-    left: 100%;
+    right: -390px;
   }
 }
 
 @media screen and (max-width: 475px) {
   .popup__close-button {
-    width: 26px;
-    height: 26px;
+    top: -370px;
+    right: -305px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .popup__close-button {
+    top: -365px;
+    right: -245px;
   }
 }
