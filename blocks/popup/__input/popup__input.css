@@ -1,7 +1,6 @@
-.popup__input-about {
+.popup__input {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
-  margin-bottom: 48px;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -10,7 +9,7 @@
 }
 
 @media screen and (max-width: 475px) {
-  .popup__input-about  {
+  .popup__input  {
     font-size: 14px;
   }
 }
