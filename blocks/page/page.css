@@ -4,3 +4,15 @@
   background-color: #000;
   position: relative;
 }
+
+@media screen and (max-width: 915px) {
+  .page {
+    width: 88%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .page {
+    width: 88%;
+  }
+}

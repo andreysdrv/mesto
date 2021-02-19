@@ -2,7 +2,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  margin: -9%;
+  margin: -10%;
   background-image: url(../../../images/add-button.svg);
   width: 40px;
   height: 40px;
@@ -18,4 +18,18 @@
 .popup__close-button:hover {
   opacity: .6;
   cursor: pointer;
+}
+
+@media screen and (max-width: 620px) {
+  .popup__close-button {
+    top: 0;
+    left: 100%;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .popup__close-button {
+    width: 26px;
+    height: 26px;
+  }
 }
