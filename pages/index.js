@@ -11,8 +11,8 @@ function popUP () {
   if (popup.classList.contains('popup_opened') === false) {
     popupOpen.addEventListener('click', function () {
       popup.classList.toggle('popup_opened');
-      userName.value = '';
-      userAbout.value = '';
+      userName.value = profileName.textContent;
+      userAbout.value = profileAbout.textContent;
     });
   } 
     popupClose.addEventListener('click', function () {
