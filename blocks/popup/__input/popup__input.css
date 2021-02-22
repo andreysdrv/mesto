@@ -2,14 +2,13 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   font-family: 'Inter', Arial, Helvetica, sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 16.94px;
   padding-bottom: 13px;
+  margin-bottom: 30px;
 }
 
-@media screen and (max-width: 475px) {
-  .popup__input  {
-    font-size: 14px;
-  }
+.popup__input:last-of-type {
+  margin-bottom: 45px;
 }

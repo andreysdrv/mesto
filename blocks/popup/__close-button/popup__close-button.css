@@ -1,7 +1,7 @@
 .popup__close-button {
-  top: -350px;
-  right: -450px;
-  position: relative;
+  position: absolute;
+  top: -40px;
+  right: -40px;
   padding: 0;
   display: flex;
   background-image: url(../../../images/add-button.svg);
@@ -10,9 +10,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  transform: rotate(
-45deg
-);
+  transform: rotate(45deg);
   border: none;
   background-color: transparent;
   transition: .2s;
@@ -25,20 +23,7 @@
 
 @media screen and (max-width: 620px) {
   .popup__close-button {
-    right: -390px;
-  }
-}
-
-@media screen and (max-width: 475px) {
-  .popup__close-button {
-    top: -370px;
-    right: -305px;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .popup__close-button {
-    top: -365px;
-    right: -245px;
+    top: -50px;
+    right: 0;
   }
 }

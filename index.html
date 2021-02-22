@@ -9,79 +9,80 @@
 <body class="page">
   <header class="header">
     <div class="header__logo"></div>
-    <div class="header__line"></div>
   </header>
   <main class="main">
     <section class="profile">
       <img src="./images/profile__avatar.png" alt="Изображение профиля" class="profile__avatar">
       <div class="profile__info">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <input type="button" class="profile__edit-button">
-        <p class="profile__about">Исследователь океана</p>
+        <div class="profile__container">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button type="button" class="profile__edit-button"></button>
+        </div>
+        <h2 class="profile__about">Исследователь океана</h2>
       </div>
-      <input type="button" class="profile__add-button">
+      <button type="button" class="profile__add-button"></button>
     </section>
-    <section class="elements">
-      <div class="elements__card">
-        <img src="./images/Tbilisi-most-mira.jpg" alt="Мост мира в Тбилиси, Грузия" class="elements__image">
-        <div class="elements__title-wrapper">
-          <p class="elements__title">Тбилиси</p>
-          <input type="button" class="elements__like-button">
-        </div>
-      </div>
-      <div class="elements__card">
-        <img src="./images/Batumi-view.jpg" alt="Вид на Батуми, Грузия" class="elements__image">
-        <div class="elements__title-wrapper">
-          <p class="elements__title">Батуми</p>
-          <input type="button" class="elements__like-button">
-        </div>
-      </div>
-      <div class="elements__card">
-        <img src="./images/Acropolis-Athens.jpg" alt="Греция, Афины, акрополис" class="elements__image">
-        <div class="elements__title-wrapper">
-          <p class="elements__title">Афины</p>
-          <input type="button" class="elements__like-button">
-        </div>
-      </div>
-      <div class="elements__card">
-        <img src="./images/Colosseum-Rome.jpg" alt="Рим, колизей" class="elements__image">
-        <div class="elements__title-wrapper">
-          <p class="elements__title">Рим, колизей</p>
-          <input type="button" class="elements__like-button">
-        </div>
-      </div>
-      <div class="elements__card">
-        <img src="./images/Netherlands-view.jpg" alt="Нидерланды" class="elements__image">
-        <div class="elements__title-wrapper">
-          <p class="elements__title">Нидерланды</p>
-          <input type="button" class="elements__like-button">
-        </div>
-      </div>
-      <div class="elements__card">
-        <img src="./images/Olympus-mountain.jpg" alt="Гора Олимп" class="elements__image">
-        <div class="elements__title-wrapper">
-          <p class="elements__title">Гора Олимп</p>
-          <input type="button" class="elements__like-button">
-        </div>
-      </div>
+    <section class="elements-container">
+      <ul class="elements">
+        <li class="elements__card">
+          <img src="./images/Tbilisi-most-mira.jpg" alt="Мост мира в Тбилиси, Грузия" class="elements__image">
+          <div class="elements__title-wrapper">
+            <h2 class="elements__title">Тбилиси</h2>
+            <button type="button" class="elements__like-button"></button>
+          </div>
+        </li>
+        <li class="elements__card">
+          <img src="./images/Batumi-view.jpg" alt="Вид на Батуми, Грузия" class="elements__image">
+          <div class="elements__title-wrapper">
+            <h2 class="elements__title">Батуми</h2>
+            <button type="button" class="elements__like-button"></button>
+          </div>
+        </li>
+        <li class="elements__card">
+          <img src="./images/Acropolis-Athens.jpg" alt="Греция, Афины, акрополис" class="elements__image">
+          <div class="elements__title-wrapper">
+            <h2 class="elements__title">Афины</h2>
+            <button type="button" class="elements__like-button"></button>
+          </div>
+        </li>
+        <li class="elements__card">
+          <img src="./images/Colosseum-Rome.jpg" alt="Рим, колизей" class="elements__image">
+          <div class="elements__title-wrapper">
+            <h2 class="elements__title">Рим, колизей</h2>
+            <button type="button" class="elements__like-button"></button>
+          </div>
+        </li>
+        <li class="elements__card">
+          <img src="./images/Netherlands-view.jpg" alt="Нидерланды" class="elements__image">
+          <div class="elements__title-wrapper">
+            <h2 class="elements__title">Нидерланды</h2>
+            <button type="button" class="elements__like-button"></button>
+          </div>
+        </li>
+        <li class="elements__card">
+          <img src="./images/Olympus-mountain.jpg" alt="Гора Олимп" class="elements__image">
+          <div class="elements__title-wrapper">
+            <h2 class="elements__title">Гора Олимп</h2>
+            <button type="button" class="elements__like-button"></button>
+          </div>
+        </li>
+      </ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyrights">&copy; 2021 Mesto Russia</p>
   </footer>
-  <section class="popup">
+  <div class="popup">
     <div class="popup__container">
-      <form action="">
-        <p class="popup__title">Редактировать профиль</p>
-        <fieldset class="popup__fieldset">
-          <input type="text" class="popup__input popup__input_name">
-          <input type="text" class="popup__input popup__input_about">
-          <button type="submit" class="popup__button">Сохранить</button>
-        </fieldset>
+      <form class="popup__form" name="popupForm">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <input name="userName" type="text" class="popup__input popup__input_data_name">
+        <input name="userAbout" type="text" class="popup__input popup__input_data_about">
+        <button type="submit" class="popup__button">Сохранить</button>
       </form>
       <button type="button" class="popup__close-button"></button>
     </div>
-  </section>
-  <script src="./pages/index.js"></script>
+  </div>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
