@@ -23,50 +23,7 @@
       <button type="button" class="profile__add-button"></button>
     </section>
     <section class="elements-container">
-      <ul class="elements">
-        <li class="elements__card">
-          <img src="./images/Tbilisi-most-mira.jpg" alt="Мост мира в Тбилиси, Грузия" class="elements__image">
-          <div class="elements__title-wrapper">
-            <h2 class="elements__title">Тбилиси</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </li>
-        <li class="elements__card">
-          <img src="./images/Batumi-view.jpg" alt="Вид на Батуми, Грузия" class="elements__image">
-          <div class="elements__title-wrapper">
-            <h2 class="elements__title">Батуми</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </li>
-        <li class="elements__card">
-          <img src="./images/Acropolis-Athens.jpg" alt="Греция, Афины, акрополис" class="elements__image">
-          <div class="elements__title-wrapper">
-            <h2 class="elements__title">Афины</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </li>
-        <li class="elements__card">
-          <img src="./images/Colosseum-Rome.jpg" alt="Рим, колизей" class="elements__image">
-          <div class="elements__title-wrapper">
-            <h2 class="elements__title">Рим, колизей</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </li>
-        <li class="elements__card">
-          <img src="./images/Netherlands-view.jpg" alt="Нидерланды" class="elements__image">
-          <div class="elements__title-wrapper">
-            <h2 class="elements__title">Нидерланды</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </li>
-        <li class="elements__card">
-          <img src="./images/Olympus-mountain.jpg" alt="Гора Олимп" class="elements__image">
-          <div class="elements__title-wrapper">
-            <h2 class="elements__title">Гора Олимп</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </li>
-      </ul>
+      <ul class="elements"></ul>
     </section>
   </main>
   <footer class="footer">
@@ -94,7 +51,6 @@
       <button type="button" class="popup__close-button popup__close-button_card-add"></button>
     </div>
   </div>
-
   <template id="card-template">
     <li class="elements__card">
       <img src="" class="elements__image">
@@ -102,9 +58,10 @@
         <h2 class="elements__title"></h2>
         <button type="button" class="elements__like-button"></button>
       </div>
+      <button class="elements__remove-button"></button>
     </li>
   </template>
-
+  <script src="./scripts/initialCards.js"></script>
   <script src="./scripts/index.js"></script>
   <script src="./scripts/modalCardAdd.js"></script>
 </body>

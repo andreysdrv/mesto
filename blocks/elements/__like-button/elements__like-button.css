@@ -12,7 +12,3 @@
   opacity: .5;
   cursor: pointer;
 }
-
-.elements__like-button:active {
-  background-image: url(../../../images/like-button_active.svg);
-}

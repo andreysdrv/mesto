@@ -21,6 +21,9 @@ function modalAddFormCard (evt) {
   cardElement.querySelector('.elements__title').textContent = placeName.value;
   document.querySelector('.elements').prepend(cardElement);
 
+  placeName.value = '';
+  placeUrl.value = '';
+
   modalAddFormClose ();
 }
 
