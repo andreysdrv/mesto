@@ -1,15 +1,14 @@
-let popupOpen = document.querySelector('.profile__edit-button');
-let popup = document.querySelector('.popup');
-let popupClose = document.querySelector('.popup__close-button');
-let userName = document.querySelector('.popup__input_data_name');
-let userAbout = document.querySelector('.popup__input_data_about');
-let popupForm = document.querySelector('.popup__form');
-let profileName = document.querySelector('.profile__name');
-let profileAbout = document.querySelector('.profile__about');
+const popupOpen = document.querySelector('.profile__edit-button');
+const popup = document.querySelector('.popup');
+const popupClose = document.querySelector('.popup__close-button');
+const userName = document.querySelector('.popup__input_data_name');
+const userAbout = document.querySelector('.popup__input_data_about');
+const popupForm = document.querySelector('.popup__form');
+const profileName = document.querySelector('.profile__name');
+const profileAbout = document.querySelector('.profile__about');
 const modalAddForm = document.querySelector('.popup_card-add'); // попап добавления карточек
 const modalAddFormButtonOpen = document.querySelector('.profile__add-button'); // кнопка попапа добавления карточек
 const modalAddFormButtonClose = document.querySelector('.popup__close-button_card-add'); // кнопка попапа добавления карточек
-
 const modalFigurePopup = document.querySelector('.popup_zoom-image'); // Попап с изображением
 const modalFigurePopupCloseButton = document.querySelector('.popup__close-button_zoom-image'); // Кнопка закрытия попапа с изображением
 
