@@ -119,8 +119,7 @@ function cardAdd (event) {
 
   elementsContainer.prepend(newCard);
 
-  placeName.value = '';
-  placeUrl.value = '';
+  cardAddForm.reset();
   closeModalWindow(modalAddForm);
 }
 
