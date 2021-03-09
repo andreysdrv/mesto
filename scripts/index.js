@@ -15,9 +15,6 @@ const modalFigurePopupCloseButton = document.querySelector('.popup__close-button
 //Функция открытия попапа
 const openModalWindow = (modalWindow) => {
   modalWindow.classList.add('popup_opened');
-
-  profileNameInput.value = profileName.textContent;
-  profileAboutInput.value = profileAbout.textContent;
 };
 
 //Функция закрытия попапа
@@ -26,17 +23,26 @@ const closeModalWindow = (modalWindow) => {
 };
 
 // Функция отправки формы редактирования профиля с отменой стандартной отправки
-function submit (evt) {
+function handleProfileEditForm (evt) {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileAbout.textContent = profileAboutInput.value;
   closeModalWindow (modalProfileEdit);
 }
 
+function profileInputHandler () {
+  profileNameInput.value = profileName.textContent;
+  profileAboutInput.value = profileAbout.textContent;
+};
+
 //Вызовы функций открытия, закрытия и отправки попапов
-modalProfileEditButtonOpen.addEventListener('click', () => openModalWindow(modalProfileEdit));
+modalProfileEditButtonOpen.addEventListener('click', function () {
+  profileInputHandler();
+  openModalWindow(modalProfileEdit);
+});
+
 modalProfileEditButtonClose.addEventListener('click', () => closeModalWindow(modalProfileEdit));
-modalWindowForm.addEventListener('submit', submit);
+modalWindowForm.addEventListener('submit', handleProfileEditForm);
 
 modalAddFormButtonOpen.addEventListener('click', () => openModalWindow(modalAddForm));
 modalAddFormButtonClose.addEventListener('click', () => closeModalWindow(modalAddForm));
@@ -47,15 +53,15 @@ const cardAddForm = modalAddForm.querySelector('.popup__form');
 const cardTemplate = document.querySelector('#card-template');
 
 
-function createElement (item) {
+function createElement (data) {
   const cardElement = cardTemplate.content.cloneNode(true);
 
   const cardTitle = cardElement.querySelector('.elements__title');
-  cardTitle.textContent = item.name;
+  cardTitle.textContent = data.name;
   
   const cardImage = cardElement.querySelector('.elements__image');
-  cardImage.alt = item.name;
-  cardImage.src = item.link;
+  cardImage.alt = data.name;
+  cardImage.src = data.link;
 
   const deleteButton = cardElement.querySelector('.elements__remove-button');
   deleteButton.addEventListener('click', deleteCardHandler);
@@ -63,21 +69,25 @@ function createElement (item) {
   const likeButton = cardElement.querySelector('.elements__like-button');
   likeButton.addEventListener('click',likeCardHandler);
   
-  cardImage.addEventListener('click', function () {
-    const popupCaption = document.querySelector('.popup__caption');
-    popupCaption.textContent = item.name;
-
-    const popupImage = document.querySelector('.popup__image');
-    popupImage.src = item.link;
-    popupImage.alt = item.name;
-
-    openModalWindow(modalFigurePopup);
+  cardImage.addEventListener('click', () => {
+    openPopupWithImage(data);
   });
 
   modalFigurePopupCloseButton.addEventListener('click', () => closeModalWindow(modalFigurePopup));
   
   return cardElement;  
 };
+
+function openPopupWithImage (data) {
+  const popupCaption = document.querySelector('.popup__caption');
+  popupCaption.textContent = data.name;
+
+  const popupImage = document.querySelector('.popup__image');
+  popupImage.src = data.link;
+  popupImage.alt = data.name;
+
+  openModalWindow(modalFigurePopup);
+}
 
 function deleteCardHandler (evt) {
   evt.target.closest('.elements__card').remove();
