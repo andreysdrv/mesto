@@ -1,11 +1,11 @@
-const popupOpen = document.querySelector('.profile__edit-button');
-const popup = document.querySelector('.popup_profile-edit');
-const popupClose = document.querySelector('.popup__close-button');
-const userName = document.querySelector('.popup__input_data_name');
-const userAbout = document.querySelector('.popup__input_data_about');
-const popupForm = document.querySelector('.popup__form');
-const profileName = document.querySelector('.profile__name');
-const profileAbout = document.querySelector('.profile__about');
+const modalProfileEdit = document.querySelector('.popup_profile-edit'); // попап редактирования профиля
+const modalProfileEditButtonOpen = document.querySelector('.profile__edit-button');// кнопка открытия попапа редактирования профиля
+const modalProfileEditButtonClose = document.querySelector('.popup__close-button'); // кнопка закрытия попапа редактирования профиля
+const profileNameInput = document.querySelector('.popup__input_data_name'); // инпут имени попапа редактирования профиля
+const profileAboutInput = document.querySelector('.popup__input_data_about'); // инпут описания попапа редактирования профиля
+const modalWindowForm = document.querySelector('.popup__form'); // форма попапа
+const profileName = document.querySelector('.profile__name'); // имя профиля
+const profileAbout = document.querySelector('.profile__about'); // описание профиля
 const modalAddForm = document.querySelector('.popup_card-add'); // попап добавления карточек
 const modalAddFormButtonOpen = document.querySelector('.profile__add-button'); // кнопка попапа добавления карточек
 const modalAddFormButtonClose = document.querySelector('.popup__close-button_card-add'); // кнопка попапа добавления карточек
@@ -16,8 +16,8 @@ const modalFigurePopupCloseButton = document.querySelector('.popup__close-button
 const openModalWindow = (modalWindow) => {
   modalWindow.classList.add('popup_opened');
 
-  userName.value = profileName.textContent;
-  userAbout.value = profileAbout.textContent;
+  profileNameInput.value = profileName.textContent;
+  profileAboutInput.value = profileAbout.textContent;
 };
 
 //Функция закрытия попапа
@@ -28,15 +28,15 @@ const closeModalWindow = (modalWindow) => {
 // Функция отправки формы редактирования профиля с отменой стандартной отправки
 function submit (evt) {
   evt.preventDefault();
-  profileName.textContent = userName.value;
-  profileAbout.textContent = userAbout.value;
-  closeModalWindow (popup);
+  profileName.textContent = profileNameInput.value;
+  profileAbout.textContent = profileAboutInput.value;
+  closeModalWindow (modalProfileEdit);
 }
 
 //Вызовы функций открытия, закрытия и отправки попапов
-popupOpen.addEventListener('click', () => openModalWindow(popup));
-popupClose.addEventListener('click', () => closeModalWindow(popup));
-popupForm.addEventListener('submit', submit);
+modalProfileEditButtonOpen.addEventListener('click', () => openModalWindow(modalProfileEdit));
+modalProfileEditButtonClose.addEventListener('click', () => closeModalWindow(modalProfileEdit));
+modalWindowForm.addEventListener('submit', submit);
 
 modalAddFormButtonOpen.addEventListener('click', () => openModalWindow(modalAddForm));
 modalAddFormButtonClose.addEventListener('click', () => closeModalWindow(modalAddForm));
