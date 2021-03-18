@@ -31,10 +31,12 @@
   </footer>
   <div class="popup popup_profile-edit">
     <div class="popup__container">
-      <form class="popup__form" name="popupForm">
+      <form class="popup__form" name="popupForm" novalidate>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input name="userName" type="text" class="popup__input popup__input_data_name" placeholder="Имя" required oninvalid="setCustomValidity('Введите желаемое имя профиля')" oninput="setCustomValidity('')">
-        <input name="userAbout" type="text" class="popup__input popup__input_data_about" placeholder="Профессия" required oninvalid="setCustomValidity('Опишите ваш род деятельности')" oninput="setCustomValidity('')">
+        <input name="userName" type="text" class="popup__input popup__input_data_name" id="userName-input" placeholder="Имя" minlength="2" maxlength="40" required>
+        <span class="popup__input-error userName-input-error"></span>
+        <input name="userAbout" type="text" class="popup__input popup__input_data_about" id="userAbout-input" placeholder="Профессия" minlength="2" maxlength="200" required>
+        <span class="popup__input-error userAbout-input-error"></span>
         <button type="submit" class="popup__button">Сохранить</button>
       </form>
       <button type="button" class="popup__close-button"></button>
@@ -42,10 +44,12 @@
   </div>
   <div class="popup popup_card-add">
     <div class="popup__container">
-      <form class="popup__form" name="popupForm">
+      <form class="popup__form" name="popupForm" novalidate>
         <h2 class="popup__title">Новое место</h2>
-        <input name="placeName" type="text" class="popup__input popup__input_place_name" placeholder="Название" required oninvalid="setCustomValidity('Введите название места')" oninput="setCustomValidity('')">
-        <input name="placeUrl" type="text" class="popup__input popup__input_place_url" placeholder="Ссылка на картинку" required oninvalid="setCustomValidity('Укажите URL изображения места')" oninput="setCustomValidity('')">
+        <input name="placeName" type="text" class="popup__input popup__input_place_name" id="placeName-input" placeholder="Название" minlength="2" maxlength="30" required>
+        <span class="popup__input-error placeName-input-error"></span>
+        <input name="placeUrl" type="url" class="popup__input popup__input_place_url" id="placeUrl-input" placeholder="Ссылка на картинку" required>
+        <span class="popup__input-error placeUrl-input-error"></span>
         <button type="submit" class="popup__button">Создать</button>
       </form>
       <button type="button" class="popup__close-button popup__close-button_card-add"></button>
@@ -72,5 +76,6 @@
   </template>
   <script src="./scripts/initial-cards.js"></script>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>
