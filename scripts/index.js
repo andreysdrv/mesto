@@ -12,14 +12,37 @@ const modalAddFormButtonClose = document.querySelector('.popup__close-button_car
 const modalFigurePopup = document.querySelector('.popup_zoom-image'); // Попап с изображением
 const modalFigurePopupCloseButton = document.querySelector('.popup__close-button_zoom-image'); // Кнопка закрытия попапа с изображением
 
+
 //Функция открытия попапа
 const openModalWindow = (modalWindow) => {
   modalWindow.classList.add('popup_opened');
+  
+  modalWindow.addEventListener('click', () => closeModalWindow(modalWindow));
+  modalWindow.querySelector('.popup__overlay').addEventListener('click', function (evt) {
+    evt.stopPropagation();
+  });
+
+  document.addEventListener('keydown', handleEscPress);
 };
 
 //Функция закрытия попапа
 const closeModalWindow = (modalWindow) => {
   modalWindow.classList.remove('popup_opened');
+
+  modalWindow.removeEventListener('click', () => closeModalWindow(modalWindow));
+  modalWindow.querySelector('.popup__overlay').removeEventListener('click', function (evt) {
+    evt.stopPropagation();
+  });
+
+  document.removeEventListener('keydown', handleEscPress);
+};
+
+//Функция закрытия попаов по нажатию на Esc
+const handleEscPress = (evt) => {
+  const modalOpened = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closeModalWindow(modalOpened);
+  };
 };
 
 // Функция отправки формы редактирования профиля с отменой стандартной отправки
@@ -30,6 +53,7 @@ function handleProfileEditForm (evt) {
   closeModalWindow (modalProfileEdit);
 }
 
+//Функция передачи имени и описания профиля в поля ввода формы
 function profileInputHandler () {
   profileNameInput.value = profileName.textContent;
   profileAboutInput.value = profileAbout.textContent;
