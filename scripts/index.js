@@ -12,35 +12,34 @@ const modalAddFormButtonClose = document.querySelector('.popup__close-button_car
 const modalFigurePopup = document.querySelector('.popup_zoom-image'); // Попап с изображением
 const modalFigurePopupCloseButton = document.querySelector('.popup__close-button_zoom-image'); // Кнопка закрытия попапа с изображением
 
-
 //Функция открытия попапа
 const openModalWindow = (modalWindow) => {
   modalWindow.classList.add('popup_opened');
-  
-  modalWindow.addEventListener('click', () => closeModalWindow(modalWindow));
-  modalWindow.querySelector('.popup__overlay').addEventListener('click', function (evt) {
-    evt.stopPropagation();
-  });
-
   document.addEventListener('keydown', handleEscPress);
 };
 
 //Функция закрытия попапа
 const closeModalWindow = (modalWindow) => {
   modalWindow.classList.remove('popup_opened');
-
-  modalWindow.removeEventListener('click', () => closeModalWindow(modalWindow));
-  modalWindow.querySelector('.popup__overlay').removeEventListener('click', function (evt) {
-    evt.stopPropagation();
-  });
-
   document.removeEventListener('keydown', handleEscPress);
 };
 
+//Функция закрытия попапов по клику на оверлей
+const handleClickOverlay = (evt) => {
+  if (evt.target.classList.contains('popup_opened')) {
+    closeModalWindow(evt.target); 
+  };
+};
+
+//Вызов функции закрытия попапа по клику на оверлей
+modalProfileEdit.addEventListener('click', handleClickOverlay);
+modalAddForm.addEventListener('click', handleClickOverlay);
+modalFigurePopup.addEventListener('click', handleClickOverlay);
+
 //Функция закрытия попаов по нажатию на Esc
 const handleEscPress = (evt) => {
-  const modalOpened = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
+    const modalOpened = document.querySelector('.popup_opened');
     closeModalWindow(modalOpened);
   };
 };
@@ -54,14 +53,14 @@ function handleProfileEditForm (evt) {
 }
 
 //Функция передачи имени и описания профиля в поля ввода формы
-function profileInputHandler () {
+function handleProfileInputValue () {
   profileNameInput.value = profileName.textContent;
   profileAboutInput.value = profileAbout.textContent;
 };
 
 //Вызовы функций открытия, закрытия и отправки попапов
 modalProfileEditButtonOpen.addEventListener('click', function () {
-  profileInputHandler();
+  handleProfileInputValue();
   openModalWindow(modalProfileEdit);
 });
 
@@ -91,7 +90,7 @@ function createElement (data) {
   deleteButton.addEventListener('click', deleteCardHandler);
 
   const likeButton = cardElement.querySelector('.elements__like-button');
-  likeButton.addEventListener('click',likeCardHandler);
+  likeButton.addEventListener('click',handleLikeButton);
   
   cardImage.addEventListener('click', () => {
     openPopupWithImage(data);
@@ -102,8 +101,9 @@ function createElement (data) {
   return cardElement;  
 };
 
+const popupCaption = document.querySelector('.popup__caption');
+
 function openPopupWithImage (data) {
-  const popupCaption = document.querySelector('.popup__caption');
   popupCaption.textContent = data.name;
 
   const popupImage = document.querySelector('.popup__image');
@@ -117,7 +117,7 @@ function deleteCardHandler (evt) {
   evt.target.closest('.elements__card').remove();
 }
 
-function likeCardHandler (evt) {
+function handleLikeButton (evt) {
   evt.target.classList.toggle('elements__like-button_active');
 }
 
@@ -130,11 +130,11 @@ function renderCard () {
   elementsContainer.append(...card);
 }
 
-function cardAdd (event) {
-  event.preventDefault();
+const placeName = document.querySelector('.popup__input_place_name');
+const placeUrl = document.querySelector('.popup__input_place_url');
 
-  const placeName = document.querySelector('.popup__input_place_name');
-  const placeUrl = document.querySelector('.popup__input_place_url');
+function addCard (event) {
+  event.preventDefault();
 
   const newPlaceName = placeName.value;
   const newPlaceUrl = placeUrl.value;
@@ -148,4 +148,4 @@ function cardAdd (event) {
 }
 
 renderCard();
-cardAddForm.addEventListener('submit', cardAdd);
+cardAddForm.addEventListener('submit', addCard);
