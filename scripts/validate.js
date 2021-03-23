@@ -17,8 +17,6 @@ const checkInputValidity = (formElement, inputElement, config) => {
     showError(formElement, inputElement, inputElement.validationMessage, config);
   } else
     hideError(formElement, inputElement, config);
-  console.log(config);
-
 };
 
 const setIventListeners = (formElement, {inputSelector, submitButtonSelector, ...config}) => {
@@ -31,8 +29,6 @@ const setIventListeners = (formElement, {inputSelector, submitButtonSelector, ..
       toggleButtonState(inputList, buttonElement, config);
     });
   });
-  console.log(config);
-
 };
 
 const enableValidation = ({formSelector, ...config}) => {
@@ -46,7 +42,6 @@ const enableValidation = ({formSelector, ...config}) => {
       setIventListeners(fieldset, config);
     });
   });
-  console.log(config);
 };
 
 const hasInvalidInput = (inputList) => {
