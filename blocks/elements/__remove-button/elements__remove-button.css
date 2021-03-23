@@ -12,6 +12,7 @@
   position: absolute;
   top: 18px;
   right: 15px;
+  outline: none;
 }
 
 .elements__remove-button:hover {
