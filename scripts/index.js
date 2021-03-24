@@ -29,9 +29,6 @@ const handleClickOverlay = (evt) => {
   if (evt.target.classList.contains('popup_opened')) {
     closeModalWindow(evt.target);
   };
-  if (evt.target.classList.contains('popup_card-add')) {
-    evt.target.querySelector('.popup__form').reset();
-  };
 };
 
 //Вызов функции закрытия попапа по клику на оверлей
@@ -77,9 +74,11 @@ modalProfileEditButtonOpen.addEventListener('click', function () {
 modalProfileEditButtonClose.addEventListener('click', () => closeModalWindow(modalProfileEdit));
 modalWindowForm.addEventListener('submit', handleProfileEditForm);
 
+const addCardForm = modalAddForm.querySelector('.popup__form');
 
 modalAddFormButtonOpen.addEventListener('click', () => {
   handleAddFormButtonState();
+  addCardForm.reset();
   openModalWindow(modalAddForm);
 });
 
