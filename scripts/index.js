@@ -67,7 +67,14 @@ modalProfileEditButtonOpen.addEventListener('click', function () {
 modalProfileEditButtonClose.addEventListener('click', () => closeModalWindow(modalProfileEdit));
 modalWindowForm.addEventListener('submit', handleProfileEditForm);
 
-modalAddFormButtonOpen.addEventListener('click', () => openModalWindow(modalAddForm));
+const submitButtonAddForm = modalAddForm.querySelector('.popup__button');
+
+modalAddFormButtonOpen.addEventListener('click', () => {
+  openModalWindow(modalAddForm);
+  submitButtonAddForm.classList.add('popup__button_disabled');
+  submitButtonAddForm.disabled = true;
+});
+
 modalAddFormButtonClose.addEventListener('click', () => closeModalWindow(modalAddForm));
 
 
@@ -102,11 +109,11 @@ function createElement (data) {
 };
 
 const popupCaption = document.querySelector('.popup__caption');
+const popupImage = document.querySelector('.popup__image');
 
 function openPopupWithImage (data) {
   popupCaption.textContent = data.name;
 
-  const popupImage = document.querySelector('.popup__image');
   popupImage.src = data.link;
   popupImage.alt = data.name;
 
