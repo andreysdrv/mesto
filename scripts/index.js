@@ -27,7 +27,10 @@ const closeModalWindow = (modalWindow) => {
 //Функция закрытия попапов по клику на оверлей
 const handleClickOverlay = (evt) => {
   if (evt.target.classList.contains('popup_opened')) {
-    closeModalWindow(evt.target); 
+    closeModalWindow(evt.target);
+  };
+  if (evt.target.classList.contains('popup_card-add')) {
+    evt.target.querySelector('.popup__form').reset();
   };
 };
 
@@ -58,6 +61,13 @@ function handleProfileInputValue () {
   profileAboutInput.value = profileAbout.textContent;
 };
 
+const submitButtonAddForm = modalAddForm.querySelector('.popup__button'); //Кнопка сабмита в попапе добавления карточки
+//Функция деактивации кнопки сабмита в попапе добавления карточки
+const handleAddFormButtonState = () => {
+  submitButtonAddForm.classList.add('popup__button_disabled');
+  submitButtonAddForm.disabled = true;
+};
+
 //Вызовы функций открытия, закрытия и отправки попапов
 modalProfileEditButtonOpen.addEventListener('click', function () {
   handleProfileInputValue();
@@ -67,12 +77,10 @@ modalProfileEditButtonOpen.addEventListener('click', function () {
 modalProfileEditButtonClose.addEventListener('click', () => closeModalWindow(modalProfileEdit));
 modalWindowForm.addEventListener('submit', handleProfileEditForm);
 
-const submitButtonAddForm = modalAddForm.querySelector('.popup__button');
 
 modalAddFormButtonOpen.addEventListener('click', () => {
+  handleAddFormButtonState();
   openModalWindow(modalAddForm);
-  submitButtonAddForm.classList.add('popup__button_disabled');
-  submitButtonAddForm.disabled = true;
 });
 
 modalAddFormButtonClose.addEventListener('click', () => closeModalWindow(modalAddForm));
