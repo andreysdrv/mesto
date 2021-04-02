@@ -1,9 +1,3 @@
-//Функция открытия попапа
-const openModalWindow = (modalWindow) => {
-  modalWindow.classList.add('popup_opened')
-  document.addEventListener('keydown', handleEscPress)
-}
-
 //Функция закрытия попапа
 const closeModalWindow = (modalWindow) => {
   modalWindow.classList.remove('popup_opened')
