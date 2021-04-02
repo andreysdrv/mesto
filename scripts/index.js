@@ -34,7 +34,7 @@ const handleClickOverlay = (evt) => {
 //Вызов функции закрытия попапа по клику на оверлей
 modalProfileEdit.addEventListener('click', handleClickOverlay);
 modalAddForm.addEventListener('click', handleClickOverlay);
-modalFigurePopup.addEventListener('click', handleClickOverlay);
+//modalFigurePopup.addEventListener('click', handleClickOverlay);
 
 //Функция закрытия попаов по нажатию на Esc
 const handleEscPress = (evt) => {
@@ -110,7 +110,7 @@ function createElement (data) {
     openPopupWithImage(data);
   });
 
-  modalFigurePopupCloseButton.addEventListener('click', () => closeModalWindow(modalFigurePopup));
+  //modalFigurePopupCloseButton.addEventListener('click', () => closeModalWindow(modalFigurePopup));
   
   return cardElement;  
 };
@@ -147,13 +147,15 @@ function renderCard () {
 const placeName = document.querySelector('.popup__input_place_name');
 const placeUrl = document.querySelector('.popup__input_place_url');
 
-function addCard (event) {
-  event.preventDefault();
+function addCard (e) {
+  e.preventDefault();
 
-  const newPlaceName = placeName.value;
-  const newPlaceUrl = placeUrl.value;
+  const newValues = {
+    name: placeName.value,
+    link: placeUrl.value
+  }
 
-  const newCard = createElement({name: newPlaceName, link: newPlaceUrl});
+  const newCard = createElement(newValues);
 
   elementsContainer.prepend(newCard);
 
@@ -161,5 +163,16 @@ function addCard (event) {
   closeModalWindow(modalAddForm);
 }
 
-renderCard();
-cardAddForm.addEventListener('submit', addCard);
+cardAddForm.addEventListener('submit', addCard)
+
+modalFigurePopupCloseButton.addEventListener('click', () => closeModalWindow(modalFigurePopup))
+modalFigurePopup.addEventListener('click', handleClickOverlay)
+
+const handleAddCard = (item) => {
+  const newCard = new Card(item, '#card-template')
+  newCard.renderCard(elementsContainer)
+}
+
+initialCards.forEach((item) => {
+  handleAddCard(item)
+})
