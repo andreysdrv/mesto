@@ -23,7 +23,7 @@ class Card {
     this._view.querySelector('.elements__image').src = this._link
     this._view.querySelector('.elements__image').alt = this._name
     this._view.querySelector('.elements__title').textContent = this._name
-    container.append(this._view)
+    container.prepend(this._view)
   }
 
     //Слушатели событий
