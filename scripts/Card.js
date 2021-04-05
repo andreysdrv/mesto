@@ -1,4 +1,9 @@
-class Card {
+//Импорт
+import { popupCaption, popupImage, modalFigurePopup } from './constans.js'
+
+import { openModalWindow } from './utils.js'
+
+export class Card {
   constructor(data, cardSelector) {
     this._name = data.name
     this._link = data.link

@@ -14,20 +14,18 @@ const modalFigurePopupCloseButton = document.querySelector('.popup__close-button
 const submitButtonAddForm = modalAddForm.querySelector('.popup__button') //Кнопка сабмита в попапе добавления карточки
 const elementsContainer = document.querySelector('.elements')
 const cardAddForm = modalAddForm.querySelector('.popup__form')
-const cardTemplate = document.querySelector('#card-template')
 const popupCaption = document.querySelector('.popup__caption')
 const popupImage = document.querySelector('.popup__image')
 const placeName = document.querySelector('.popup__input_place_name')
 const placeUrl = document.querySelector('.popup__input_place_url')
 
 const selectors = {
-  formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active'
-};
+}
 
 const initialCards = [
   {
@@ -55,3 +53,26 @@ const initialCards = [
     link: 'https://weatlas.com/img/landmarks/f2be31c534ad180012614017c02341b5.jpg'
   }
 ]
+
+export { modalProfileEdit,
+  modalProfileEditButtonOpen,
+  modalProfileEditButtonClose,
+  profileNameInput,
+  profileAboutInput,
+  modalWindowForm,
+  profileName,
+  profileAbout,
+  modalAddForm,
+  modalAddFormButtonOpen,
+  modalAddFormButtonClose,
+  modalFigurePopup,
+  modalFigurePopupCloseButton,
+  submitButtonAddForm,
+  elementsContainer,
+  cardAddForm,
+  popupCaption,
+  popupImage,
+  placeName,
+  placeUrl,
+  selectors,
+  initialCards }

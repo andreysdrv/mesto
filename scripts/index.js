@@ -1,8 +1,31 @@
-//Функция закрытия попапа
-const closeModalWindow = (modalWindow) => {
-  modalWindow.classList.remove('popup_opened')
-  document.removeEventListener('keydown', handleEscPress)
-}
+//Импорт
+import { modalProfileEdit,
+  modalProfileEditButtonOpen,
+  modalProfileEditButtonClose,
+  profileNameInput,
+  profileAboutInput,
+  modalWindowForm,
+  profileName,
+  profileAbout,
+  modalAddForm,
+  modalAddFormButtonOpen,
+  modalAddFormButtonClose,
+  modalFigurePopup,
+  modalFigurePopupCloseButton,
+  submitButtonAddForm,
+  elementsContainer,
+  cardAddForm,
+  placeName,
+  placeUrl,
+  selectors,
+  initialCards } from './constans.js'
+
+import { openModalWindow, closeModalWindow } from './utils.js'
+
+import { Card } from './Card.js'
+
+import { FormValidator } from './FormValidator.js'
+
 
 //Функция закрытия попапов по клику на оверлей
 const handleClickOverlay = (e) => {
@@ -14,14 +37,6 @@ const handleClickOverlay = (e) => {
 //Вызов функции закрытия попапа по клику на оверлей
 modalProfileEdit.addEventListener('click', handleClickOverlay)
 modalAddForm.addEventListener('click', handleClickOverlay)
-
-//Функция закрытия попаов по нажатию на Esc
-const handleEscPress = (e) => {
-  if (e.key === 'Escape') {
-    const modalOpened = document.querySelector('.popup_opened')
-    closeModalWindow(modalOpened)
-  }
-}
 
 // Функция отправки формы редактирования профиля с отменой стандартной отправки
 function handleProfileEditForm (e) {

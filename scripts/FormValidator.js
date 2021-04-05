@@ -1,10 +1,11 @@
-class FormValidator {
+export class FormValidator {
   constructor(data, formElement) {
     this._inputSelector = data.inputSelector
     this._submitButtonSelector = data.submitButtonSelector
     this._inactiveButtonClass = data.inactiveButtonClass
     this._inputErrorClass = data.inputErrorClass
     this._errorClass = data.errorClass
+    
     this._formElement = formElement
   }
 
@@ -46,7 +47,6 @@ class FormValidator {
   }
 
   _setIventListeners() {
-    console.log(this._formElement)
     const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector))
     const buttonElement = this._formElement.querySelector(this._submitButtonSelector)
     this._toggleButtonState(inputList, buttonElement)
@@ -59,6 +59,6 @@ class FormValidator {
   }
 
   enableValidation() {
-    this._setIventListeners();
+    this._setIventListeners()
   }
 }
