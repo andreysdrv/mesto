@@ -5,9 +5,9 @@ const closeModalWindow = (modalWindow) => {
 }
 
 //Функция закрытия попапов по клику на оверлей
-const handleClickOverlay = (evt) => {
-  if (evt.target.classList.contains('popup_opened')) {
-    closeModalWindow(evt.target)
+const handleClickOverlay = (e) => {
+  if (e.target.classList.contains('popup_opened')) {
+    closeModalWindow(e.target)
   }
 }
 
@@ -16,19 +16,19 @@ modalProfileEdit.addEventListener('click', handleClickOverlay)
 modalAddForm.addEventListener('click', handleClickOverlay)
 
 //Функция закрытия попаов по нажатию на Esc
-const handleEscPress = (evt) => {
-  if (evt.key === 'Escape') {
+const handleEscPress = (e) => {
+  if (e.key === 'Escape') {
     const modalOpened = document.querySelector('.popup_opened')
     closeModalWindow(modalOpened)
   }
 }
 
 // Функция отправки формы редактирования профиля с отменой стандартной отправки
-function handleProfileEditForm (evt) {
-  evt.preventDefault()
+function handleProfileEditForm (e) {
+  e.preventDefault()
   profileName.textContent = profileNameInput.value
   profileAbout.textContent = profileAboutInput.value
-  closeModalWindow (modalProfileEdit)
+  closeModalWindow(modalProfileEdit)
 }
 
 //Функция передачи имени и описания профиля в поля ввода формы
@@ -85,4 +85,11 @@ const handleAddCard = (item) => {
 
 initialCards.reverse().forEach((item) => {
   handleAddCard(item)
+})
+
+const formList = Array.from(document.querySelectorAll('.popup__form'))
+
+formList.forEach((item) => {
+  const valid = new FormValidator(selectors, item)
+  valid.enableValidation()
 })

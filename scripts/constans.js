@@ -20,6 +20,15 @@ const popupImage = document.querySelector('.popup__image')
 const placeName = document.querySelector('.popup__input_place_name')
 const placeUrl = document.querySelector('.popup__input_place_url')
 
+const selectors = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+};
+
 const initialCards = [
   {
     name: 'Тбилиси',
