@@ -12,7 +12,6 @@ import { modalProfileEdit,
   modalAddFormButtonClose,
   modalFigurePopup,
   modalFigurePopupCloseButton,
-  submitButtonAddForm,
   elementsContainer,
   cardAddForm,
   placeName,
@@ -52,12 +51,6 @@ function handleProfileInputValue () {
   profileAboutInput.value = profileAbout.textContent
 }
 
-//Функция деактивации кнопки сабмита в попапе добавления карточки
-const handleAddFormButtonState = () => {
-  submitButtonAddForm.classList.add('popup__button_disabled')
-  submitButtonAddForm.disabled = true
-}
-
 //Вызовы функций открытия, закрытия и отправки попапов
 modalProfileEditButtonOpen.addEventListener('click', function () {
   handleProfileInputValue()
@@ -68,7 +61,7 @@ modalProfileEditButtonClose.addEventListener('click', () => closeModalWindow(mod
 modalWindowForm.addEventListener('submit', handleProfileEditForm)
 
 modalAddFormButtonOpen.addEventListener('click', () => {
-  handleAddFormButtonState()
+  cardAddFormValidator.disableSubmitButton()
   openModalWindow(modalAddForm)
 })
 
@@ -102,9 +95,8 @@ initialCards.reverse().forEach((item) => {
   handleAddCard(item)
 })
 
-const formList = Array.from(document.querySelectorAll('.popup__form'))
+const profileEditFormValidator = new FormValidator(selectors, modalWindowForm)
+profileEditFormValidator.enableValidation()
 
-formList.forEach((item) => {
-  const valid = new FormValidator(selectors, item)
-  valid.enableValidation()
-})
+const cardAddFormValidator = new FormValidator(selectors, cardAddForm)
+cardAddFormValidator.enableValidation()
