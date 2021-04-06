@@ -65,7 +65,10 @@ modalAddFormButtonOpen.addEventListener('click', () => {
   openModalWindow(modalAddForm)
 })
 
-modalAddFormButtonClose.addEventListener('click', () => closeModalWindow(modalAddForm))
+modalAddFormButtonClose.addEventListener('click', () => {
+  closeModalWindow(modalAddForm)
+  cardAddForm.reset()
+})
 
 function addCard (e) {
   e.preventDefault()
