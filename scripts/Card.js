@@ -25,8 +25,9 @@ export class Card {
   renderCard(container) {
     this._getCardTemplate()
     this._setEventListeners()
-    this._view.querySelector('.elements__image').src = this._link
-    this._view.querySelector('.elements__image').alt = this._name
+    this._cardImage = this._view.querySelector('.elements__image')
+    this._cardImage.src = this._link
+    this._cardImage.alt = this._name
     this._view.querySelector('.elements__title').textContent = this._name
     container.prepend(this._view)
   }
