@@ -19,7 +19,7 @@ import { modalProfileEdit,
   selectors,
   initialCards } from './constans.js'
 
-import { openModalWindow, closeModalWindow } from './utils.js'
+// import { openModalWindow, closeModalWindow } from './utils.js'
 
 import { Card } from './Card.js'
 
@@ -52,12 +52,12 @@ function handleProfileInputValue () {
 }
 
 //Вызовы функций открытия, закрытия и отправки попапов
-modalProfileEditButtonOpen.addEventListener('click', function () {
-  handleProfileInputValue()
-  openModalWindow(modalProfileEdit)
-})
+// modalProfileEditButtonOpen.addEventListener('click', function () {
+//   handleProfileInputValue()
+//   openModalWindow(modalProfileEdit)
+// })
 
-modalProfileEditButtonClose.addEventListener('click', () => closeModalWindow(modalProfileEdit))
+// modalProfileEditButtonClose.addEventListener('click', () => closeModalWindow(modalProfileEdit))
 modalWindowForm.addEventListener('submit', handleProfileEditForm)
 
 modalAddFormButtonOpen.addEventListener('click', () => {
@@ -103,3 +103,19 @@ profileEditFormValidator.enableValidation()
 
 const cardAddFormValidator = new FormValidator(selectors, cardAddForm)
 cardAddFormValidator.enableValidation()
+
+
+// ***********************************************************************
+import Popup from './Popup.js'
+
+const popupFormProfileEdit = new Popup('.popup_profile-edit')
+
+popupFormProfileEdit.setEventListeners()
+
+modalProfileEditButtonOpen.addEventListener('click', _ => {
+  popupFormProfileEdit.open()
+  handleProfileInputValue()
+})
+// ***********************************************************************
+
+
