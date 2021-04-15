@@ -49,11 +49,11 @@ export class Card {
     })
 
     //Открытие попапа с изображением
-    this._view
-    .querySelector('.elements__image')
-    .addEventListener('click', () => {
-      this._handleOpenPopupWithImage()
-    })
+    // this._view
+    // .querySelector('.elements__image')
+    // .addEventListener('click', () => {
+    //   this._handleOpenPopupWithImage()
+    // })
   }
 
   //Лайк

@@ -60,15 +60,15 @@ function handleProfileInputValue () {
 // modalProfileEditButtonClose.addEventListener('click', () => closeModalWindow(modalProfileEdit))
 modalWindowForm.addEventListener('submit', handleProfileEditForm)
 
-modalAddFormButtonOpen.addEventListener('click', () => {
-  cardAddFormValidator.disableSubmitButton()
-  openModalWindow(modalAddForm)
-})
+// modalAddFormButtonOpen.addEventListener('click', () => {
+//   cardAddFormValidator.disableSubmitButton()
+//   openModalWindow(modalAddForm)
+// })
 
-modalAddFormButtonClose.addEventListener('click', () => {
-  closeModalWindow(modalAddForm)
-  cardAddForm.reset()
-})
+// modalAddFormButtonClose.addEventListener('click', () => {
+//   closeModalWindow(modalAddForm)
+//   cardAddForm.reset()
+// })
 
 function addCard (e) {
   e.preventDefault()
@@ -116,6 +116,18 @@ modalProfileEditButtonOpen.addEventListener('click', _ => {
   popupFormProfileEdit.open()
   handleProfileInputValue()
 })
+
+
+const popupCardAdd = new Popup('.popup_card-add')
+
+popupCardAdd.setEventListeners()
+
+modalAddFormButtonOpen.addEventListener('click', _ => {
+  popupCardAdd.open()
+  handleProfileInputValue()
+})
 // ***********************************************************************
+import PopupWithImage from './PopupWithImage.js'
 
-
+const popupFigure = new PopupWithImage('.popup_zoom-image', { /*some obj*/ })
+// ***********************************************************************
