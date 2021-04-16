@@ -38,11 +38,11 @@ modalProfileEdit.addEventListener('click', handleClickOverlay)
 modalAddForm.addEventListener('click', handleClickOverlay)
 
 // Функция отправки формы редактирования профиля с отменой стандартной отправки
-function handleProfileEditForm (e) {
-  e.preventDefault()
+function handleProfileEditForm () {
+  // e.preventDefault()
   profileName.textContent = profileNameInput.value
   profileAbout.textContent = profileAboutInput.value
-  closeModalWindow(modalProfileEdit)
+  // closeModalWindow(modalProfileEdit)
 }
 
 //Функция передачи имени и описания профиля в поля ввода формы
@@ -58,7 +58,7 @@ function handleProfileInputValue () {
 // })
 
 // modalProfileEditButtonClose.addEventListener('click', () => closeModalWindow(modalProfileEdit))
-modalWindowForm.addEventListener('submit', handleProfileEditForm)
+// modalWindowForm.addEventListener('submit', handleProfileEditForm)
 
 // modalAddFormButtonOpen.addEventListener('click', () => {
 //   cardAddFormValidator.disableSubmitButton()
@@ -80,23 +80,23 @@ function addCard (e) {
 
   handleAddCard(newValues)
 
-  cardAddForm.reset()
+  // cardAddForm.reset()
   closeModalWindow(modalAddForm)
 }
 
-cardAddForm.addEventListener('submit', addCard)
+// cardAddForm.addEventListener('submit', addCard)
 
 modalFigurePopupCloseButton.addEventListener('click', () => closeModalWindow(modalFigurePopup))
 modalFigurePopup.addEventListener('click', handleClickOverlay)
 
-const handleAddCard = (item) => {
-  const newCard = new Card(item, '#card-template')
-  newCard.renderCard(elementsContainer)
-}
+// const handleAddCard = (item) => {
+//   const newCard = new Card(item, '#card-template')
+//   newCard.renderCard(elementsContainer)
+// }
 
-initialCards.reverse().forEach((item) => {
-  handleAddCard(item)
-})
+// initialCards.reverse().forEach((item) => {
+//   handleAddCard(item)
+// })
 
 const profileEditFormValidator = new FormValidator(selectors, modalWindowForm)
 profileEditFormValidator.enableValidation()
@@ -106,28 +106,58 @@ cardAddFormValidator.enableValidation()
 
 
 // ***********************************************************************
-import Popup from './Popup.js'
+import Section from './Section.js'
 
-const popupFormProfileEdit = new Popup('.popup_profile-edit')
+const cardList = new Section( {
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, '#card-template')
+    const cardElement = card.renderCard()
 
-popupFormProfileEdit.setEventListeners()
+    cardList.addItem(cardElement)
+  } }, '.elements')
 
-modalProfileEditButtonOpen.addEventListener('click', _ => {
-  popupFormProfileEdit.open()
-  handleProfileInputValue()
-})
-
-
-const popupCardAdd = new Popup('.popup_card-add')
-
-popupCardAdd.setEventListeners()
-
-modalAddFormButtonOpen.addEventListener('click', _ => {
-  popupCardAdd.open()
-  handleProfileInputValue()
-})
+cardList.render()
 // ***********************************************************************
 import PopupWithImage from './PopupWithImage.js'
 
 const popupFigure = new PopupWithImage('.popup_zoom-image', { /*some obj*/ })
+// ***********************************************************************
+import PopupWithForm from './PopupWithForm.js'
+
+const popupFormCardAdd = new PopupWithForm('.popup_card-add', _ => {
+  const newValues = 
+  {
+    name: placeName.value,
+    link: placeUrl.value
+  }
+
+  const card = new Card(newValues, '#card-template')
+  const cardElement = card.renderCard()
+  cardList.addItem(cardElement)
+  cardAddFormValidator.disableSubmitButton()
+})
+
+popupFormCardAdd.setEventListeners()
+
+modalAddFormButtonOpen.addEventListener('click', _ => {
+  popupFormCardAdd.open()
+})
+
+const popupFormProfilEdit = new PopupWithForm('.popup_profile-edit', _ => {
+  handleProfileEditForm()
+})
+
+popupFormProfilEdit.setEventListeners()
+
+modalProfileEditButtonOpen.addEventListener('click', _ => {
+  popupFormProfilEdit.open()
+  handleProfileInputValue()
+})
+// ***********************************************************************
+import UserInfo from './UserInfo.js'
+
+const userInfo = new UserInfo({name: '.profile__name', info: '.profile__about'})
+
+userInfo.getUserInfo()
 // ***********************************************************************

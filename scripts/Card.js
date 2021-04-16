@@ -22,14 +22,15 @@ export class Card {
   }
 
     //Публичный метод отрисовки карточки
-  renderCard(container) {
+  renderCard() {
     this._getCardTemplate()
     this._setEventListeners()
     this._cardImage = this._view.querySelector('.elements__image')
     this._cardImage.src = this._link
     this._cardImage.alt = this._name
     this._view.querySelector('.elements__title').textContent = this._name
-    container.prepend(this._view)
+    // container.prepend(this._view)
+    return this._view
   }
 
     //Слушатели событий
