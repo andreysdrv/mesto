@@ -4,9 +4,14 @@ import { popupCaption, popupImage, modalFigurePopup } from './constans.js'
 import { openModalWindow } from './utils.js'
 
 export class Card {
-  constructor(data, cardSelector) {
+  constructor( {data, handleCardClick}, cardSelector) {
+    // console.log(data)
+    // console.log(handleCardClick)
+    // console.log(cardSelector)
     this._name = data.name
     this._link = data.link
+    this._handleCardClick = handleCardClick
+
     this._cardSelector = cardSelector
   }
 
@@ -25,6 +30,7 @@ export class Card {
   renderCard() {
     this._getCardTemplate()
     this._setEventListeners()
+    // this._handleCardClick()
     this._cardImage = this._view.querySelector('.elements__image')
     this._cardImage.src = this._link
     this._cardImage.alt = this._name
@@ -50,11 +56,13 @@ export class Card {
     })
 
     //Открытие попапа с изображением
-    // this._view
-    // .querySelector('.elements__image')
-    // .addEventListener('click', () => {
-    //   this._handleOpenPopupWithImage()
-    // })
+    this._view
+    .querySelector('.elements__image')
+    .addEventListener('click', () => {
+      this._handleCardClick({ 
+        name: this._name,
+        src: this._link })
+    })
   }
 
   //Лайк

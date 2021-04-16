@@ -86,8 +86,8 @@ function addCard (e) {
 
 // cardAddForm.addEventListener('submit', addCard)
 
-modalFigurePopupCloseButton.addEventListener('click', () => closeModalWindow(modalFigurePopup))
-modalFigurePopup.addEventListener('click', handleClickOverlay)
+// modalFigurePopupCloseButton.addEventListener('click', () => closeModalWindow(modalFigurePopup))
+// modalFigurePopup.addEventListener('click', handleClickOverlay)
 
 // const handleAddCard = (item) => {
 //   const newCard = new Card(item, '#card-template')
@@ -104,24 +104,29 @@ profileEditFormValidator.enableValidation()
 const cardAddFormValidator = new FormValidator(selectors, cardAddForm)
 cardAddFormValidator.enableValidation()
 
+// ***********************************************************************
+import PopupWithImage from './PopupWithImage.js'
 
+const popupFigure = new PopupWithImage('.popup_zoom-image')
+console.log(popupFigure)
 // ***********************************************************************
 import Section from './Section.js'
 
 const cardList = new Section( {
   items: initialCards,
-  renderer: (item) => {
-    const card = new Card(item, '#card-template')
+  renderer: item => {
+    const card = new Card( {
+      data: item,
+      handleCardClick: _ => {
+        console.log(item)
+        popupFigure.open(item)
+      }
+    }, '#card-template')
     const cardElement = card.renderCard()
-
     cardList.addItem(cardElement)
   } }, '.elements')
 
 cardList.render()
-// ***********************************************************************
-import PopupWithImage from './PopupWithImage.js'
-
-const popupFigure = new PopupWithImage('.popup_zoom-image', { /*some obj*/ })
 // ***********************************************************************
 import PopupWithForm from './PopupWithForm.js'
 
@@ -132,7 +137,12 @@ const popupFormCardAdd = new PopupWithForm('.popup_card-add', _ => {
     link: placeUrl.value
   }
 
-  const card = new Card(newValues, '#card-template')
+  const card = new Card( {
+    data: newValues,
+    handleCardClick: _ => {
+      popupFigure.open(newValues)
+    }
+  }, '#card-template')
   const cardElement = card.renderCard()
   cardList.addItem(cardElement)
   cardAddFormValidator.disableSubmitButton()
