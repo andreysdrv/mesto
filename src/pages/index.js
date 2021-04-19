@@ -1,6 +1,6 @@
 //Импорт
 
-import './pages/index.css'
+import './index.css'
 
 import {
   modalProfileEditButtonOpen,
@@ -10,9 +10,9 @@ import {
   modalAddFormButtonOpen,
   cardAddForm,
   selectors,
-  initialCards } from './constans.js'
+  initialCards } from '../utils/constans.js'
 
-import { FormValidator } from './scripts/FormValidator.js'
+import { FormValidator } from '../components/FormValidator.js'
 
 const profileEditFormValidator = new FormValidator(selectors, modalWindowForm)
 profileEditFormValidator.enableValidation()
@@ -21,15 +21,15 @@ const cardAddFormValidator = new FormValidator(selectors, cardAddForm)
 cardAddFormValidator.enableValidation()
 
 // ***********************************************************************
-import PopupWithImage from './scripts/PopupWithImage.js'
+import PopupWithImage from '../components/PopupWithImage.js'
 
 const popupFigure = new PopupWithImage('.popup_zoom-image')
 
 popupFigure.setEventListeners()
 // ***********************************************************************
-import { Card } from './scripts/Card.js'
+import { Card } from '../components/Card.js'
 
-import Section from './scripts/Section.js'
+import Section from '../components/Section.js'
 
 const cardList = new Section( {
   items: initialCards,
@@ -46,13 +46,13 @@ const cardList = new Section( {
 
 cardList.render()
 // ***********************************************************************
-import UserInfo from './scripts/UserInfo.js'
+import UserInfo from '../components/UserInfo.js'
 
 const userInfo = new UserInfo({name: '.profile__name', info: '.profile__about'})
 
 userInfo.getUserInfo()
 // ***********************************************************************
-import PopupWithForm from './scripts/PopupWithForm.js'
+import PopupWithForm from '../components/PopupWithForm.js'
 
 const popupFormCardAdd = new PopupWithForm('.popup_card-add', newValues => {
   const card = new Card( {

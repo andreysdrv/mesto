@@ -10,6 +10,7 @@
 * HTML / CSS / BEM
 * JavaScript
 * ООП
+* Webpack
 
 ---
 
