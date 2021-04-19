@@ -19,7 +19,6 @@ export default class Popup {
     this._popup.querySelector('.popup__close-button')
       .addEventListener('click', _ => this.close())
     this._popup.addEventListener('click', this._hanldeOverlayClose.bind(this))    
-
   }
 
   open() {

@@ -1,13 +1,5 @@
-//Импорт
-import { popupCaption, popupImage, modalFigurePopup } from './constans.js'
-
-import { openModalWindow } from './utils.js'
-
 export class Card {
   constructor( {data, handleCardClick}, cardSelector) {
-    // console.log(data)
-    // console.log(handleCardClick)
-    // console.log(cardSelector)
     this._name = data.name
     this._link = data.link
     this._handleCardClick = handleCardClick
@@ -81,9 +73,9 @@ export class Card {
   }
 
     //Открытие попапа с изображением
-  _handleOpenPopupWithImage() {
-    popupImage.src = this._link
-    popupCaption.textContent = this._name
-    openModalWindow(modalFigurePopup)
-  }
+  // _handleOpenPopupWithImage() {
+  //   popupImage.src = this._link
+  //   popupCaption.textContent = this._name
+  //   openModalWindow(modalFigurePopup)
+  // }
 }
