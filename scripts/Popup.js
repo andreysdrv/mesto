@@ -9,9 +9,17 @@ export default class Popup {
     }
   }
 
+  _hanldeOverlayClose(e) {
+    if (e.target.classList.contains('popup_opened')) {
+      this.close(e.target)
+    }
+  }
+
   setEventListeners() {
     this._popup.querySelector('.popup__close-button')
       .addEventListener('click', _ => this.close())
+    this._popup.addEventListener('click', this._hanldeOverlayClose.bind(this))    
+
   }
 
   open() {

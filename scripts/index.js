@@ -29,7 +29,7 @@ import { FormValidator } from './FormValidator.js'
 //Функция закрытия попапов по клику на оверлей
 const handleClickOverlay = (e) => {
   if (e.target.classList.contains('popup_opened')) {
-    closeModalWindow(e.target)
+    // closeModalWindow(e.target)
   }
 }
 
@@ -40,8 +40,8 @@ modalAddForm.addEventListener('click', handleClickOverlay)
 // Функция отправки формы редактирования профиля с отменой стандартной отправки
 function handleProfileEditForm () {
   // e.preventDefault()
-  profileName.textContent = profileNameInput.value
-  profileAbout.textContent = profileAboutInput.value
+  // profileName.textContent = profileNameInput.value
+  // profileAbout.textContent = profileAboutInput.value
   // closeModalWindow(modalProfileEdit)
 }
 
@@ -108,7 +108,8 @@ cardAddFormValidator.enableValidation()
 import PopupWithImage from './PopupWithImage.js'
 
 const popupFigure = new PopupWithImage('.popup_zoom-image')
-console.log(popupFigure)
+
+popupFigure.setEventListeners()
 // ***********************************************************************
 import Section from './Section.js'
 
@@ -118,7 +119,6 @@ const cardList = new Section( {
     const card = new Card( {
       data: item,
       handleCardClick: _ => {
-        console.log(item)
         popupFigure.open(item)
       }
     }, '#card-template')
@@ -127,6 +127,12 @@ const cardList = new Section( {
   } }, '.elements')
 
 cardList.render()
+// ***********************************************************************
+import UserInfo from './UserInfo.js'
+
+const userInfo = new UserInfo({name: '.profile__name', info: '.profile__about'})
+
+userInfo.getUserInfo()
 // ***********************************************************************
 import PopupWithForm from './PopupWithForm.js'
 
@@ -155,19 +161,15 @@ modalAddFormButtonOpen.addEventListener('click', _ => {
 })
 
 const popupFormProfilEdit = new PopupWithForm('.popup_profile-edit', _ => {
-  handleProfileEditForm()
+  userInfo.setUserInfo()
 })
 
 popupFormProfilEdit.setEventListeners()
 
 modalProfileEditButtonOpen.addEventListener('click', _ => {
+  profileNameInput.value = userInfo.getUserInfo().name
+  profileAboutInput.value = userInfo.getUserInfo().info
+
   popupFormProfilEdit.open()
-  handleProfileInputValue()
 })
-// ***********************************************************************
-import UserInfo from './UserInfo.js'
-
-const userInfo = new UserInfo({name: '.profile__name', info: '.profile__about'})
-
-userInfo.getUserInfo()
 // ***********************************************************************
