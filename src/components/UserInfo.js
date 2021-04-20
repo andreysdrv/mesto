@@ -2,9 +2,6 @@ export default class UserInfo {
   constructor(userSelectors) {
     this._profileName = document.querySelector(userSelectors.name)
     this._profileInfo = document.querySelector(userSelectors.info)
-
-    this._profileNameInput = document.querySelector('.popup__input_data_name')
-    this._profileAboutInput = document.querySelector('.popup__input_data_about')
   }
 
   getUserInfo() {
@@ -16,8 +13,8 @@ export default class UserInfo {
     return this._userData
   }
 
-  setUserInfo() {
-    this._profileName.textContent = this._profileNameInput.value
-    this._profileInfo.textContent = this._profileAboutInput.value
+  setUserInfo(profileNameInput, profileAboutInput) {
+    this._profileName.textContent = profileNameInput.value
+    this._profileInfo.textContent = profileAboutInput.value
   }
 }

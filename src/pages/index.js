@@ -2,7 +2,8 @@
 
 import './index.css'
 
-import {
+import 
+{
   modalProfileEditButtonOpen,
   profileNameInput,
   profileAboutInput,
@@ -10,7 +11,15 @@ import {
   modalAddFormButtonOpen,
   cardAddForm,
   selectors,
-  initialCards } from '../utils/constans.js'
+  initialCards,
+  cardSelector,
+  popupFigureSelector,
+  elementsContainerSelector,
+  profileNameSelector,
+  profileAboutSelector,
+  popupCardAddSelector,
+  popupProfileEditSelector
+ } from '../utils/constans.js'
 
 import { FormValidator } from '../components/FormValidator.js'
 
@@ -23,7 +32,7 @@ cardAddFormValidator.enableValidation()
 // ***********************************************************************
 import PopupWithImage from '../components/PopupWithImage.js'
 
-const popupFigure = new PopupWithImage('.popup_zoom-image')
+const popupFigure = new PopupWithImage(popupFigureSelector)
 
 popupFigure.setEventListeners()
 // ***********************************************************************
@@ -31,36 +40,34 @@ import { Card } from '../components/Card.js'
 
 import Section from '../components/Section.js'
 
+const createCard = (data) => {
+  const card = new Card( {
+    data: data,
+    handleCardClick: _ => {
+      popupFigure.open(data)
+    }
+  }, cardSelector)
+  return card
+}
+
 const cardList = new Section( {
   items: initialCards,
   renderer: item => {
-    const card = new Card( {
-      data: item,
-      handleCardClick: _ => {
-        popupFigure.open(item)
-      }
-    }, '#card-template')
+    const card = createCard(item)
     const cardElement = card.renderCard()
     cardList.addItem(cardElement)
-  } }, '.elements')
+  } }, elementsContainerSelector)
 
 cardList.render()
 // ***********************************************************************
 import UserInfo from '../components/UserInfo.js'
 
-const userInfo = new UserInfo({name: '.profile__name', info: '.profile__about'})
-
-userInfo.getUserInfo()
+const userInfo = new UserInfo({name: profileNameSelector, info: profileAboutSelector})
 // ***********************************************************************
 import PopupWithForm from '../components/PopupWithForm.js'
 
-const popupFormCardAdd = new PopupWithForm('.popup_card-add', newValues => {
-  const card = new Card( {
-    data: newValues,
-    handleCardClick: _ => {
-      popupFigure.open(newValues)
-    }
-  }, '#card-template')
+const popupFormCardAdd = new PopupWithForm(popupCardAddSelector, newValues => {
+  const card = createCard(newValues)
   const cardElement = card.renderCard()
   cardList.addItem(cardElement)
   cardAddFormValidator.disableSubmitButton()
@@ -72,14 +79,17 @@ modalAddFormButtonOpen.addEventListener('click', _ => {
   popupFormCardAdd.open()
 })
 
-const popupFormProfilEdit = new PopupWithForm('.popup_profile-edit', _ => {
-  userInfo.setUserInfo()
+const popupFormProfilEdit = new PopupWithForm(popupProfileEditSelector, _ => {
+  userInfo.setUserInfo(profileNameInput, profileAboutInput)
 })
 
 popupFormProfilEdit.setEventListeners()
 
 modalProfileEditButtonOpen.addEventListener('click', _ => {
   const userData = userInfo.getUserInfo()
+
+  profileEditFormValidator.handleErrorElements()
+
   profileNameInput.value = userData.name
   profileAboutInput.value = userData.info
 

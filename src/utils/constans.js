@@ -19,6 +19,15 @@ const popupImage = document.querySelector('.popup__image')
 const placeName = document.querySelector('.popup__input_place_name')
 const placeUrl = document.querySelector('.popup__input_place_url')
 
+const cardSelector = '#card-template' // селектор темплейт элемента
+const popupFigureSelector = '.popup_zoom-image' // селектор попапа с изображением
+const elementsContainerSelector = '.elements' // селектор контейнера карточек
+const profileNameSelector = '.profile__name' // селектор имени профиля
+const profileAboutSelector = '.profile__about' // селектор описания профиля
+const popupCardAddSelector = '.popup_card-add' // селектор попапа с формой добавления
+const popupProfileEditSelector = '.popup_profile-edit' // селектор попапа с формой редактирования профиля
+
+
 const selectors = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -54,7 +63,9 @@ const initialCards = [
   }
 ]
 
-export { modalProfileEdit,
+export 
+{ 
+  modalProfileEdit,
   modalProfileEditButtonOpen,
   modalProfileEditButtonClose,
   profileNameInput,
@@ -75,4 +86,12 @@ export { modalProfileEdit,
   placeName,
   placeUrl,
   selectors,
-  initialCards }
+  initialCards,
+  cardSelector,
+  popupFigureSelector,
+  elementsContainerSelector,
+  profileNameSelector,
+  profileAboutSelector,
+  popupCardAddSelector,
+  popupProfileEditSelector
+ }
