@@ -1,5 +1,3 @@
-//Импорт
-
 import './index.css'
 
 import 
@@ -21,7 +19,12 @@ import
   popupProfileEditSelector
  } from '../utils/constans.js'
 
-import { FormValidator } from '../components/FormValidator.js'
+import FormValidator from '../components/FormValidator.js'
+import PopupWithImage from '../components/PopupWithImage.js'
+import Card from '../components/Card.js'
+import Section from '../components/Section.js'
+import UserInfo from '../components/UserInfo.js'
+import PopupWithForm from '../components/PopupWithForm.js'
 
 const profileEditFormValidator = new FormValidator(selectors, modalWindowForm)
 profileEditFormValidator.enableValidation()
@@ -29,17 +32,12 @@ profileEditFormValidator.enableValidation()
 const cardAddFormValidator = new FormValidator(selectors, cardAddForm)
 cardAddFormValidator.enableValidation()
 
-// ***********************************************************************
-import PopupWithImage from '../components/PopupWithImage.js'
+const userInfo = new UserInfo({name: profileNameSelector, info: profileAboutSelector})
 
 const popupFigure = new PopupWithImage(popupFigureSelector)
-
 popupFigure.setEventListeners()
-// ***********************************************************************
-import { Card } from '../components/Card.js'
 
-import Section from '../components/Section.js'
-
+//Функция создания карточки
 const createCard = (data) => {
   const card = new Card( {
     data: data,
@@ -57,14 +55,7 @@ const cardList = new Section( {
     const cardElement = card.renderCard()
     cardList.addItem(cardElement)
   } }, elementsContainerSelector)
-
 cardList.render()
-// ***********************************************************************
-import UserInfo from '../components/UserInfo.js'
-
-const userInfo = new UserInfo({name: profileNameSelector, info: profileAboutSelector})
-// ***********************************************************************
-import PopupWithForm from '../components/PopupWithForm.js'
 
 const popupFormCardAdd = new PopupWithForm(popupCardAddSelector, newValues => {
   const card = createCard(newValues)
@@ -72,18 +63,17 @@ const popupFormCardAdd = new PopupWithForm(popupCardAddSelector, newValues => {
   cardList.addItem(cardElement)
   cardAddFormValidator.disableSubmitButton()
 })
-
 popupFormCardAdd.setEventListeners()
-
-modalAddFormButtonOpen.addEventListener('click', _ => {
-  popupFormCardAdd.open()
-})
 
 const popupFormProfilEdit = new PopupWithForm(popupProfileEditSelector, _ => {
   userInfo.setUserInfo(profileNameInput, profileAboutInput)
 })
-
 popupFormProfilEdit.setEventListeners()
+
+modalAddFormButtonOpen.addEventListener('click', _ => {
+  cardAddFormValidator.handleErrorElements()
+  popupFormCardAdd.open()
+})
 
 modalProfileEditButtonOpen.addEventListener('click', _ => {
   const userData = userInfo.getUserInfo()
@@ -95,4 +85,3 @@ modalProfileEditButtonOpen.addEventListener('click', _ => {
 
   popupFormProfilEdit.open()
 })
-// ***********************************************************************

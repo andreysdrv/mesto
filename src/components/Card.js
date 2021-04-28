@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
   constructor( {data, handleCardClick}, cardSelector) {
     this._name = data.name
     this._link = data.link
@@ -22,12 +22,10 @@ export class Card {
   renderCard() {
     this._getCardTemplate()
     this._setEventListeners()
-    // this._handleCardClick()
     this._cardImage = this._view.querySelector('.elements__image')
     this._cardImage.src = this._link
     this._cardImage.alt = this._name
     this._view.querySelector('.elements__title').textContent = this._name
-    // container.prepend(this._view)
     return this._view
   }
 
@@ -71,11 +69,4 @@ export class Card {
     .closest('.elements__card')
     .remove()
   }
-
-    //Открытие попапа с изображением
-  // _handleOpenPopupWithImage() {
-  //   popupImage.src = this._link
-  //   popupCaption.textContent = this._name
-  //   openModalWindow(modalFigurePopup)
-  // }
 }
