@@ -5,9 +5,9 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this._options.baseUrl}/users/me`, {
+    return fetch(this._url + '/users/me', {
       method: 'GET',
-      headers: this._options.headers
+      headers: this._headers
     })
       .then(res => {
         if (res.ok) {
@@ -30,18 +30,17 @@ export default class Api {
       })
   }
 
-  setUserInfo(userData) {
-    return fetch(`${this._options.baseUrl}/users/me`, {
+  setUserInfoApi(userData) {
+    return fetch(this._url + '/users/me', {
       method: 'PATCH',
-      headers: this._options.headers,
+      headers: this._headers,
       body: JSON.stringify({
-        name: userData.name,
-        about: userData.info
+        name: userData.userName,
+        about: userData.userAbout
       })
     })
       .then(res => {
         if (res.ok) {
-          console.log(res)
           return res.json()
         }
         return Promise.reject(`Ошибка: ${res.status}`)

@@ -38,17 +38,6 @@ const api = new Api({
   }
 })
 
-// api.getUserInfo().then((result) => {
-//   console.log(result)
-//   profileName.textContent = result.name
-//   profileAbout.textContent = 'result.about'
-//   profileAvatar.src = result.avatar
-// })
-// .catch(err => {
-//   console.log(err)
-// })
-
-
 const profileEditFormValidator = new FormValidator(selectors, modalWindowForm)
 profileEditFormValidator.enableValidation()
 
@@ -96,15 +85,13 @@ const popupFormCardAdd = new PopupWithForm(popupCardAddSelector, newValues => {
 })
 popupFormCardAdd.setEventListeners()
 
-const popupFormProfilEdit = new PopupWithForm(popupProfileEditSelector, _ => {
-  // userInfo.setUserInfo(profileNameInput, profileAboutInput)
-  const userData = userInfo.getUserInfo()
-
-  // api.setUserInfo(userData).then(result => {
-  //   console.log(result)
-  //   userInfo.setUserInfo(result)
-  // })
-  
+const popupFormProfilEdit = new PopupWithForm(popupProfileEditSelector, newValues => {
+  console.log(newValues)
+  api.setUserInfoApi(newValues)
+    .then((data) => {
+      console.log(data)
+      userInfo.setUserInfo(data)
+    })
 })
 popupFormProfilEdit.setEventListeners()
 
@@ -132,4 +119,13 @@ cards
   })
   .catch(err => {
       console.log(err)
+  })
+
+const apiInfo = api.getUserInfo()
+apiInfo
+  .then((data) => {
+    userInfo.setUserInfo(data)
+  })
+  .catch((err) => {
+    console.log(err)
   })
