@@ -6,6 +6,7 @@ const profileAboutInput = document.querySelector('.popup__input_data_about') // 
 const modalWindowForm = document.querySelector('.popup__form') // форма попапа
 const profileName = document.querySelector('.profile__name') // имя профиля
 const profileAbout = document.querySelector('.profile__about') // описание профиля
+const profileAvatar = document.querySelector('.profile__avatar')
 const modalAddForm = document.querySelector('.popup_card-add') // попап добавления карточек
 const modalAddFormButtonOpen = document.querySelector('.profile__add-button') // кнопка попапа добавления карточек
 const modalAddFormButtonClose = document.querySelector('.popup__close-button_card-add') // кнопка попапа добавления карточек
@@ -65,6 +66,7 @@ const initialCards = [
 
 export 
 { 
+  profileAvatar,
   modalProfileEdit,
   modalProfileEditButtonOpen,
   modalProfileEditButtonClose,
