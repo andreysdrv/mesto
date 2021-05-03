@@ -63,5 +63,31 @@ export default class Api {
         return Promise.reject((`Ошибка: ${res.status}`))
       })
   }
+
+  like(id) {
+    return fetch(this._url + `/cards/likes/${id}`, {
+      method: 'PUT',
+      headers: this._headers
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject(`Ошибка: ${res.status}`)
+      })
+  }
+
+  dislike(id) {
+    return fetch(this._url + `/cards/likes/${id}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject(`Ошибка: ${res.status}`)
+      })
+  }
 }
 

@@ -56,7 +56,7 @@ const createCard = (data) => {
     handleCardClick: _ => {
       popupFigure.open(data)
     }
-  }, cardSelector)
+  }, cardSelector, api)
   return card
 }
 
