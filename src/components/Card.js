@@ -1,13 +1,14 @@
 export default class Card {
-  constructor( {data, handleCardClick}, cardSelector, api) {
+  constructor( {data, handleCardClick, handleConfirmDelete}, cardSelector, api) {
     this._name = data.name
     this._link = data.link
     this._handleCardClick = handleCardClick
-
+    this._handleConfirmDelete = handleConfirmDelete
     this._cardSelector = cardSelector
     this._api = api
-    this._id = data._id
+    this._id = data._id // id карточки
     this._likes = data.likes
+    this._owner = data.owner._id // id создателя карточки
   }
 
   //Методы
@@ -22,7 +23,9 @@ export default class Card {
   }
 
     //Публичный метод отрисовки карточки
-  renderCard() {
+  renderCard(data) {
+    // console.log(data._id)
+    // console.log(this._owner)
     this._getCardTemplate()
     this._setEventListeners()
     this._cardImage = this._view.querySelector('.elements__image')
@@ -31,6 +34,10 @@ export default class Card {
     this._view.querySelector('.elements__title').textContent = this._name
 
     this._view.querySelector('.elements__like-count').textContent = this._likes.length
+
+    if(!(this._owner === data._id)) {
+      this._view.querySelector('.elements__remove-button').style.display = 'none'
+    }
 
     return this._view
   }
@@ -45,10 +52,15 @@ export default class Card {
     })
 
     //Удаление
+    // this._view
+    // .querySelector('.elements__remove-button')
+    // .addEventListener('click', () => {
+    //   this._handleRemoveCard()
+    // })
     this._view
     .querySelector('.elements__remove-button')
-    .addEventListener('click', () => {
-      this._handleRemoveCard()
+    .addEventListener('click', (e) => {
+      this._handleConfirmDelete(e)
     })
 
     //Открытие попапа с изображением
@@ -94,8 +106,10 @@ export default class Card {
 
   //Удаление
   _handleRemoveCard() {
-    this._view
-    .closest('.elements__card')
-    .remove()
+    // this._view
+    // .closest('.elements__card')
+    // .remove()
+
+
   }
 }

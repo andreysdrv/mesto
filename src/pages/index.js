@@ -19,7 +19,8 @@ import
   profileNameSelector,
   profileAboutSelector,
   popupCardAddSelector,
-  popupProfileEditSelector
+  popupProfileEditSelector,
+  popupDeleteConfirmSelector
  } from '../utils/constans.js'
 
 import FormValidator from '../components/FormValidator.js'
@@ -29,6 +30,7 @@ import Section from '../components/Section.js'
 import UserInfo from '../components/UserInfo.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import Api from '../components/Api.js'
+import PopupWithConfirm from '../components/PopupWithConfirm.js'
 
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-23',
@@ -55,8 +57,18 @@ const createCard = (data) => {
     data: data,
     handleCardClick: _ => {
       popupFigure.open(data)
+    },
+    handleConfirmDelete: _ => {
+      const confirmDeletePopup = new PopupWithConfirm (popupDeleteConfirmSelector, api.delete(data._id), data)
+      confirmDeletePopup.open()
     }
   }, cardSelector, api)
+  apiInfo
+    .then((data) => {
+      const cardElement = card.renderCard(data)
+      cardList.addItem(cardElement)
+    })
+    .catch((err) => console.log(err))
   return card
 }
 
@@ -64,7 +76,7 @@ const cardList = new Section( {
   // items: initialCards,
   renderer: item => {
     const card = createCard(item)
-    const cardElement = card.renderCard()
+    const cardElement = card.renderCard(item)
     cardList.addItem(cardElement)
   } }, elementsContainerSelector)
 // cardList.render()
@@ -74,9 +86,9 @@ const cardList = new Section( {
 const popupFormCardAdd = new PopupWithForm(popupCardAddSelector, newValues => {
   api.addUserCard(newValues)
     .then((data) => {
-      const card = createCard(data)
-      const cardElement = card.renderCard()
-      cardList.addItem(cardElement)
+      createCard(data)
+      // const cardElement = card.renderCard(data)
+      // cardList.addItem(cardElement)
     })
     .catch((err) => {
       console.log(err)
@@ -121,10 +133,13 @@ cards
       console.log(err)
   })
 
+let userId
 const apiInfo = api.getUserInfo()
 apiInfo
   .then((data) => {
     userInfo.setUserInfo(data)
+    userId = data._id
+    console.log(userId)
   })
   .catch((err) => {
     console.log(err)

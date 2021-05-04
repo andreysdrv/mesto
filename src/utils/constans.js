@@ -27,6 +27,7 @@ const profileNameSelector = '.profile__name' // селектор имени пр
 const profileAboutSelector = '.profile__about' // селектор описания профиля
 const popupCardAddSelector = '.popup_card-add' // селектор попапа с формой добавления
 const popupProfileEditSelector = '.popup_profile-edit' // селектор попапа с формой редактирования профиля
+const popupDeleteConfirmSelector = '.popup_confirm-delete' // селектор попапа с подтверждением удаления карточки
 
 
 const selectors = {
@@ -95,5 +96,6 @@ export
   profileNameSelector,
   profileAboutSelector,
   popupCardAddSelector,
-  popupProfileEditSelector
+  popupProfileEditSelector,
+  popupDeleteConfirmSelector
  }
