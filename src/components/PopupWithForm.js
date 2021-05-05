@@ -10,7 +10,6 @@ export default class PopupWithForm extends Popup{
 
     this._popupButton = this._popupForm.querySelector('.popup__button')
     this._popupButtonTextContent = this._popupButton.textContent
-    console.log(this._popupButtonTextContent)
   }
 
   _getInputValues() {

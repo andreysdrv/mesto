@@ -19,7 +19,6 @@ export default class UserInfo {
     
     this._profileName.textContent = data.name
     this._profileInfo.textContent = data.about
-    console.log(data.avatar)
     this._profileAvatar.src = data.avatar
   }
 

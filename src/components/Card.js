@@ -60,11 +60,6 @@ export default class Card {
     })
 
     //Удаление
-    // this._view
-    // .querySelector('.elements__remove-button')
-    // .addEventListener('click', () => {
-    //   this._handleRemoveCard()
-    // })
     this._view
     .querySelector('.elements__remove-button')
     .addEventListener('click', () => {
@@ -83,10 +78,8 @@ export default class Card {
 
   //Лайк
   handleLikeCard() {
-    // this._handleLikeClick()
     const likeButton = this._view.querySelector('.elements__like-button')
     const likeCount = this._view.querySelector('.elements__like-count')
-    // likeButton.classList.toggle('elements__like-button_active')
 
     if(!(likeButton.classList.contains('elements__like-button_active'))) {
       this._api.like(this._id)
@@ -107,27 +100,6 @@ export default class Card {
           console.log(err)
         })
     }
-
-
-    // if (!likeButton.classList.contains('elements__like-button_active')) {
-    //   this._api.like(this._id)
-    //     .then((data) => {
-    //       likeButton.classList.add('elements__like-button_active')
-    //       likeCount.textContent = data.likes.length
-    //     })
-    //     .catch((err) => {
-    //       console.log(err)
-    //     })
-    // } else {
-    //   this._api.dislike(this._id)
-    //     .then((data) => {
-    //       likeButton.classList.remove('elements__like-button_active')
-    //       likeCount.textContent = data.likes.length
-    //     })
-    //     .catch((err) => {
-    //       console.log(err)
-    //     })
-    // }
   }
 
   //Удаление

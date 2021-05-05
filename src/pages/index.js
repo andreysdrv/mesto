@@ -94,14 +94,11 @@ const cardList = new Section( {
     cardList.addItem(cardElement)
   } }, elementsContainerSelector)
 
-
 const popupAvatarEditFromValidator = new FormValidator(selectors, avatarEditForm)
 popupAvatarEditFromValidator.enableValidation()
 
 const popupAvatarEdit = new PopupWithForm(popupAvatarEditSelector, newValues => {
   popupAvatarEdit.renderLoading(true)
-  console.log('ITSWORK')
-  console.log(newValues)
   api.handleUserAvatar(newValues)
     .then((data) => {
       userInfo.setUserAvatar(data)
@@ -124,12 +121,8 @@ avatarEditButton.addEventListener('click', _ => {
 
 const popupFormCardAdd = new PopupWithForm(popupCardAddSelector, newValues => {
   popupFormCardAdd.renderLoading(true)
-  // cardList.addItem(newValues)
   api.addUserCard(newValues)
     .then((data) => {
-      console.log(userId)
-      // createCard(data)
-      
       const card = createCard(data)
       const cardElement = card.renderCard(data)
       cardList.addItem(cardElement)
@@ -144,11 +137,9 @@ const popupFormCardAdd = new PopupWithForm(popupCardAddSelector, newValues => {
 popupFormCardAdd.setEventListeners()
 
 const popupFormProfilEdit = new PopupWithForm(popupProfileEditSelector, newValues => {
-  console.log(newValues)
   popupFormProfilEdit.renderLoading(true)
   api.setUserInfoApi(newValues)
     .then((data) => {
-      console.log(data)
       userInfo.setUserInfo(data)
     })
     .catch((err) => console.log(err))
