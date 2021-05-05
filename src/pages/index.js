@@ -99,6 +99,7 @@ const popupAvatarEditFromValidator = new FormValidator(selectors, avatarEditForm
 popupAvatarEditFromValidator.enableValidation()
 
 const popupAvatarEdit = new PopupWithForm(popupAvatarEditSelector, newValues => {
+  popupAvatarEdit.renderLoading(true)
   console.log('ITSWORK')
   console.log(newValues)
   api.handleUserAvatar(newValues)
@@ -106,6 +107,10 @@ const popupAvatarEdit = new PopupWithForm(popupAvatarEditSelector, newValues => 
       userInfo.setUserAvatar(data)
     })
     .catch((err) => console.log(err))
+    .finally(() => {
+      popupAvatarEdit.renderLoading(false)
+      popupAvatarEdit.close()
+    })
 
   popupAvatarEditFromValidator.disableSubmitButton()
 })
@@ -118,6 +123,7 @@ avatarEditButton.addEventListener('click', _ => {
 })
 
 const popupFormCardAdd = new PopupWithForm(popupCardAddSelector, newValues => {
+  popupFormCardAdd.renderLoading(true)
   // cardList.addItem(newValues)
   api.addUserCard(newValues)
     .then((data) => {
@@ -128,8 +134,10 @@ const popupFormCardAdd = new PopupWithForm(popupCardAddSelector, newValues => {
       const cardElement = card.renderCard(data)
       cardList.addItem(cardElement)
     })
-    .catch((err) => {
-      console.log(err)
+    .catch((err) => console.log(err))
+    .finally(() => {
+      popupFormCardAdd.renderLoading(true)
+      popupFormCardAdd.close()
     })
   cardAddFormValidator.disableSubmitButton()
 })
@@ -137,16 +145,23 @@ popupFormCardAdd.setEventListeners()
 
 const popupFormProfilEdit = new PopupWithForm(popupProfileEditSelector, newValues => {
   console.log(newValues)
+  popupFormProfilEdit.renderLoading(true)
   api.setUserInfoApi(newValues)
     .then((data) => {
       console.log(data)
       userInfo.setUserInfo(data)
+    })
+    .catch((err) => console.log(err))
+    .finally(() => {
+      popupFormProfilEdit.renderLoading(false)
+      popupFormProfilEdit.close()
     })
 })
 popupFormProfilEdit.setEventListeners()
 
 modalAddFormButtonOpen.addEventListener('click', _ => {
   cardAddFormValidator.handleErrorElements()
+  popupFormCardAdd.renderLoading(false)
   popupFormCardAdd.open()
 })
 
@@ -167,17 +182,13 @@ cards
   .then((data) => {
     cardList.render(data)
   })
-  .catch(err => {
-      console.log(err)
-  })
+  .catch((err) => console.log(err))
 
-let userId
+let userId // переменная под id пользователя
 const apiInfo = api.getUserInfo()
 apiInfo
   .then((data) => {
     userInfo.setUserInfo(data)
     userId = data._id
   })
-  .catch((err) => {
-    console.log(err)
-  })
+  .catch((err) => console.log(err))
