@@ -51,44 +51,57 @@ const userInfo = new UserInfo({name: profileNameSelector, info: profileAboutSele
 const popupFigure = new PopupWithImage(popupFigureSelector)
 popupFigure.setEventListeners()
 
+const confirmDeletePopup = new PopupWithConfirm (popupDeleteConfirmSelector)
+confirmDeletePopup.setEventListeners()
+
 //Функция создания карточки
 const createCard = (data) => {
   const card = new Card( {
     data: data,
+
     handleCardClick: _ => {
       popupFigure.open(data)
     },
+
+    handleLikeClick: _ => {
+      console.log('сраборало')
+      card.handleLikeCard()
+    },
+
     handleConfirmDelete: _ => {
-      const confirmDeletePopup = new PopupWithConfirm (popupDeleteConfirmSelector, api.delete(data._id), data)
+      confirmDeletePopup.setSubmitAction(() => {
+        api.delete(data._id)
+          .then(() => {
+            card.handleRemoveCard()
+          })
+          .catch((err) => console.log(err))
+      })
       confirmDeletePopup.open()
     }
-  }, cardSelector, api)
-  apiInfo
-    .then((data) => {
-      const cardElement = card.renderCard(data)
-      cardList.addItem(cardElement)
-    })
-    .catch((err) => console.log(err))
+  }, cardSelector, api, userId)
+
   return card
 }
 
 const cardList = new Section( {
-  // items: initialCards,
   renderer: item => {
     const card = createCard(item)
     const cardElement = card.renderCard(item)
     cardList.addItem(cardElement)
   } }, elementsContainerSelector)
-// cardList.render()
 
 
 
 const popupFormCardAdd = new PopupWithForm(popupCardAddSelector, newValues => {
+  // cardList.addItem(newValues)
   api.addUserCard(newValues)
     .then((data) => {
-      createCard(data)
-      // const cardElement = card.renderCard(data)
-      // cardList.addItem(cardElement)
+      console.log(userId)
+      // createCard(data)
+      
+      const card = createCard(data)
+      const cardElement = card.renderCard(data)
+      cardList.addItem(cardElement)
     })
     .catch((err) => {
       console.log(err)
@@ -139,7 +152,6 @@ apiInfo
   .then((data) => {
     userInfo.setUserInfo(data)
     userId = data._id
-    console.log(userId)
   })
   .catch((err) => {
     console.log(err)
