@@ -20,7 +20,11 @@ import
   profileAboutSelector,
   popupCardAddSelector,
   popupProfileEditSelector,
-  popupDeleteConfirmSelector
+  popupDeleteConfirmSelector,
+  modalAvatarEdit,
+  popupAvatarEditSelector,
+  avatarEditForm,
+  profileAvatarSelector
  } from '../utils/constans.js'
 
 import FormValidator from '../components/FormValidator.js'
@@ -46,7 +50,7 @@ profileEditFormValidator.enableValidation()
 const cardAddFormValidator = new FormValidator(selectors, cardAddForm)
 cardAddFormValidator.enableValidation()
 
-const userInfo = new UserInfo({name: profileNameSelector, info: profileAboutSelector})
+const userInfo = new UserInfo({name: profileNameSelector, info: profileAboutSelector, avatar: profileAvatarSelector})
 
 const popupFigure = new PopupWithImage(popupFigureSelector)
 popupFigure.setEventListeners()
@@ -64,7 +68,6 @@ const createCard = (data) => {
     },
 
     handleLikeClick: _ => {
-      console.log('сраборало')
       card.handleLikeCard()
     },
 
@@ -91,6 +94,27 @@ const cardList = new Section( {
   } }, elementsContainerSelector)
 
 
+const popupAvatarEditFromValidator = new FormValidator(selectors, avatarEditForm)
+popupAvatarEditFromValidator.enableValidation()
+
+const popupAvatarEdit = new PopupWithForm(popupAvatarEditSelector, newValues => {
+  console.log('ITSWORK')
+  console.log(newValues)
+  api.handleUserAvatar(newValues)
+    .then((data) => {
+      userInfo.setUserAvatar(data)
+    })
+    .catch((err) => console.log(err))
+
+  popupAvatarEditFromValidator.disableSubmitButton()
+})
+popupAvatarEdit.setEventListeners()
+
+profileAvatar.addEventListener('click', _ => {
+  popupAvatarEditFromValidator.handleErrorElements()
+  popupAvatarEditFromValidator.disableSubmitButton()
+  popupAvatarEdit.open()
+})
 
 const popupFormCardAdd = new PopupWithForm(popupCardAddSelector, newValues => {
   // cardList.addItem(newValues)

@@ -19,6 +19,8 @@ const popupCaption = document.querySelector('.popup__caption')
 const popupImage = document.querySelector('.popup__image')
 const placeName = document.querySelector('.popup__input_place_name')
 const placeUrl = document.querySelector('.popup__input_place_url')
+const modalAvatarEdit = document.querySelector('.popup_avatar-edit') // попап редактирования аватара профиля
+const avatarEditForm = modalAvatarEdit.querySelector('.popup__form')
 
 const cardSelector = '#card-template' // селектор темплейт элемента
 const popupFigureSelector = '.popup_zoom-image' // селектор попапа с изображением
@@ -28,6 +30,8 @@ const profileAboutSelector = '.profile__about' // селектор описан�
 const popupCardAddSelector = '.popup_card-add' // селектор попапа с формой добавления
 const popupProfileEditSelector = '.popup_profile-edit' // селектор попапа с формой редактирования профиля
 const popupDeleteConfirmSelector = '.popup_confirm-delete' // селектор попапа с подтверждением удаления карточки
+const popupAvatarEditSelector = '.popup_avatar-edit' // селектор попапа редактирования аватара профиля
+const profileAvatarSelector = '.profile__avatar'
 
 
 const selectors = {
@@ -97,5 +101,9 @@ export
   profileAboutSelector,
   popupCardAddSelector,
   popupProfileEditSelector,
-  popupDeleteConfirmSelector
+  popupDeleteConfirmSelector,
+  modalAvatarEdit,
+  popupAvatarEditSelector,
+  avatarEditForm,
+  profileAvatarSelector
  }

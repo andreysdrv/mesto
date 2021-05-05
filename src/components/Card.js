@@ -15,8 +15,6 @@ export default class Card {
     this._likes = data.likes
     this._ownerId = data.owner._id // id создателя карточки
     this._userId = userId // id текущего пользователя
-
-
   }
 
   //Методы
