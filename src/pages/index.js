@@ -24,7 +24,8 @@ import
   modalAvatarEdit,
   popupAvatarEditSelector,
   avatarEditForm,
-  profileAvatarSelector
+  profileAvatarSelector,
+  avatarEditButton
  } from '../utils/constans.js'
 
 import FormValidator from '../components/FormValidator.js'
@@ -110,7 +111,7 @@ const popupAvatarEdit = new PopupWithForm(popupAvatarEditSelector, newValues => 
 })
 popupAvatarEdit.setEventListeners()
 
-profileAvatar.addEventListener('click', _ => {
+avatarEditButton.addEventListener('click', _ => {
   popupAvatarEditFromValidator.handleErrorElements()
   popupAvatarEditFromValidator.disableSubmitButton()
   popupAvatarEdit.open()

@@ -21,6 +21,7 @@ const placeName = document.querySelector('.popup__input_place_name')
 const placeUrl = document.querySelector('.popup__input_place_url')
 const modalAvatarEdit = document.querySelector('.popup_avatar-edit') // попап редактирования аватара профиля
 const avatarEditForm = modalAvatarEdit.querySelector('.popup__form')
+const avatarEditButton = document.querySelector('.profile__avatar-edit-button')
 
 const cardSelector = '#card-template' // селектор темплейт элемента
 const popupFigureSelector = '.popup_zoom-image' // селектор попапа с изображением
@@ -105,5 +106,6 @@ export
   modalAvatarEdit,
   popupAvatarEditSelector,
   avatarEditForm,
-  profileAvatarSelector
+  profileAvatarSelector,
+  avatarEditButton
  }
