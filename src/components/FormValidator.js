@@ -59,15 +59,20 @@ export default class FormValidator {
     })
   }
 
-  handleErrorElements() {
+  removeErrors() {
     this._inputList.forEach(inputElement => {
       this._hideError(inputElement)
     })
   }
 
   disableSubmitButton() {
-    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.classList.add(this._inactiveButtonClass)
     this._buttonElement.disbaled = true;
+  }
+
+  enableSubmitButton() { // исправляет баг, когда при открытии попапа форма валидна, а кнопка неактивна
+    this._buttonElement.classList.remove(this._inactiveButtonClass)
+    this._buttonElement.disbaled = false
   }
 
   enableValidation() {

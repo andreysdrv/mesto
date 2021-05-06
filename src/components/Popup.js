@@ -12,7 +12,7 @@ export default class Popup {
 
   _hanldeOverlayClose(e) {
     if (e.target.classList.contains('popup_opened')) {
-      this.close(e.target)
+      this.close()
     }
   }
 

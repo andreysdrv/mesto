@@ -12,7 +12,6 @@ export default class Card {
     
     this._api = api
     this._id = data._id // id карточки
-    this._likes = data.likes
     this._ownerId = data.owner._id // id создателя карточки
     this._userId = userId // id текущего пользователя
   }
@@ -29,7 +28,7 @@ export default class Card {
   }
 
     //Публичный метод отрисовки карточки
-  renderCard(data) {
+  renderCard() {
     this._getCardTemplate()
     this._setEventListeners()
     this._cardImage = this._view.querySelector('.elements__image')
@@ -85,7 +84,7 @@ export default class Card {
       this._api.like(this._id)
         .then((data) => {
           likeButton.classList.add('elements__like-button_active')
-          likeCount.textContent = this._likes.length + 1
+          likeCount.textContent = data.likes.length
         })
         .catch((err) => {
           console.log(err)
@@ -94,7 +93,7 @@ export default class Card {
       this._api.dislike(this._id)
         .then((data) => {
           likeButton.classList.remove('elements__like-button_active')
-          likeCount.textContent = this._likes.length - 1
+          likeCount.textContent = data.likes.length
         })
         .catch((err) => {
           console.log(err)
