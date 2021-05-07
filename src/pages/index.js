@@ -69,12 +69,12 @@ const createCard = (data) => {
       confirmDeletePopup.setSubmitAction( _ => {
       confirmDeletePopup.renderLoadingWhileDeleting(true)
         api.delete(data._id)
-          .then( _ => card.handleRemoveCard())
-          .catch((err) => console.log(err))
-          .finally( _ => {
-            confirmDeletePopup.renderLoadingWhileDeleting(false)
+          .then( _ => {
+            card.handleRemoveCard()
             confirmDeletePopup.close()
           })
+          .catch((err) => console.log(err))
+          .finally( _ => confirmDeletePopup.renderLoadingWhileDeleting(false))
       })
       confirmDeletePopup.open()
     }
@@ -102,12 +102,10 @@ const popupAvatarEdit = new PopupWithForm(popupAvatarEditSelector, newValues => 
     .then((data) => {
       userInfo.setUserAvatar(data)
       popupAvatarEditFromValidator.disableSubmitButton()
-    })
-    .catch((err) => console.log(err))
-    .finally( _ => {
-      popupAvatarEdit.renderLoading(false)
       popupAvatarEdit.close()
     })
+    .catch((err) => console.log(err))
+    .finally( _ => popupAvatarEdit.renderLoading(false))
 })
 popupAvatarEdit.setEventListeners()
 
@@ -124,24 +122,22 @@ const popupFormCardAdd = new PopupWithForm(popupCardAddSelector, newValues => {
       const cardElement = card.renderCard()
       cardList.addItem(cardElement)
       cardAddFormValidator.disableSubmitButton()
-    })
-    .catch((err) => console.log(err))
-    .finally( _ => {
-      popupFormCardAdd.renderLoading(true)
       popupFormCardAdd.close()
     })
+    .catch((err) => console.log(err))
+    .finally( _ => popupFormCardAdd.renderLoading(true))
 })
 popupFormCardAdd.setEventListeners()
 
 const popupFormProfilEdit = new PopupWithForm(popupProfileEditSelector, newValues => {
   popupFormProfilEdit.renderLoading(true)
   api.setUserInfoApi(newValues)
-    .then((data) => userInfo.setUserInfo(data))
-    .catch((err) => console.log(err))
-    .finally( _ => {
-      popupFormProfilEdit.renderLoading(false)
+    .then((data) => {
+      userInfo.setUserInfo(data)
       popupFormProfilEdit.close()
     })
+    .catch((err) => console.log(err))
+    .finally( _ => popupFormProfilEdit.renderLoading(false))
 })
 popupFormProfilEdit.setEventListeners()
 
@@ -167,13 +163,10 @@ modalProfileEditButtonOpen.addEventListener('click', _ => {
 let userId // переменная под id пользователя
 
 api.getAllNeededData() // возвращает результат исполнения нужных промисов (карточки и информация пользователя)
-  .then((args) => {
-    const [ dataFromFirstPromise, dataFromSecondPromise] = args
+  .then(( [cards, userData] ) => {
+    userInfo.setUserInfo(userData)
+    userId = userData._id
     
-    userInfo.setUserInfo(dataFromSecondPromise)
-    userId = dataFromSecondPromise._id
-    
-    cardList.render(dataFromFirstPromise)
-    
+    cardList.render(cards)
   })
   .catch((err) => console.log(err))
