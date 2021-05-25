@@ -23,7 +23,7 @@
 
 ---
 
-[Ссылка на проект](https://totalretard.github.io/mesto/)
+[Ссылка на проект](https://andreysdrv.github.io/mesto/)
 
 ---
 
